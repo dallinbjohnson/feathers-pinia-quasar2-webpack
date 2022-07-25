@@ -1,0 +1,45 @@
+import { store } from 'quasar/wrappers';
+import { createStore } from 'vuex';
+
+// import example from './module-example'
+
+// eslint-disable-next-line no-undef
+const requireModule = require.context(
+  // The path where the service modules live
+  './services',
+  // Whether to look in subfolders
+  false,
+  // Only include .js files (prevents duplicate imports`)
+  /.js$/,
+);
+const servicePlugins = requireModule
+  .keys()
+  .map(modulePath => requireModule(modulePath).default);
+import auth from './store.auth';
+
+/*
+ * If not building with SSR mode, you can
+ * directly export the Store instantiation;
+ *
+ * The function below can be async too; either use
+ * async/await or return a Promise which resolves
+ * with the Store instance.
+ */
+
+export default store(function (/* { ssrContext } */) {
+  const Store = createStore({
+    modules: {
+      // example
+    },
+    plugins: [
+      ...servicePlugins,
+      auth,
+    ],
+
+    // enable strict mode (adds overhead!)
+    // for dev mode and --debug builds only
+    strict: process.env.DEBUGGING
+  });
+
+  return Store;
+});
