@@ -1,28 +1,23 @@
 <template>
-  <q-item
-    clickable
-    tag="a"
-    target="_blank"
-    :href="link"
-  >
-    <q-item-section
-      v-if="icon"
-      avatar
-    >
-      <q-icon :name="icon" />
+  <q-item clickable
+          tag="a"
+          :to="link"
+          active-class="active-link">
+    <q-item-section v-if="icon" avatar>
+      <q-icon :name="icon"/>
     </q-item-section>
 
     <q-item-section>
       <q-item-label>{{ title }}</q-item-label>
-      <q-item-label caption>{{ caption }}</q-item-label>
+      <q-item-label caption :lines="1">
+        {{ caption }}
+      </q-item-label>
     </q-item-section>
   </q-item>
 </template>
 
 <script>
-  import { defineComponent } from 'vue';
-
-  export default defineComponent({
+  export default {
     name: 'EssentialLink',
     props: {
       title: {
@@ -36,7 +31,7 @@
       },
 
       link: {
-        type: String,
+        type: [String, Object],
         default: '#'
       },
 
@@ -45,5 +40,15 @@
         default: ''
       }
     }
-  });
+  };
 </script>
+
+<style scoped lang="scss">
+  .active-link {
+    border-left: 3px solid var(--q-color-secondary);
+
+    * {
+      color: var(--q-color-secondary);
+    }
+  }
+</style>

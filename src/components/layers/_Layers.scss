@@ -1,0 +1,11 @@
+#Layers::v-deep {
+  .nestable-item {
+    margin: 0;
+
+    .nestable-list {
+      margin: 0;
+      padding-left: 25px;
+      border-left: 1px solid lightgrey;
+    }
+  }
+}

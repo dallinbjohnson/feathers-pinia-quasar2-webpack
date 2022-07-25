@@ -1,0 +1,166 @@
+.toggle {
+  font-size: 1.1em;
+  margin-top: 21px;
+  font-weight: 450;
+
+  span:first-child {
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
+    transition: 0.2s all;
+    padding: 9px 20px;
+  }
+
+  span:last-child {
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+    transition: 0.2s all;
+    padding: 9px 33px;
+  }
+
+  .active {
+    border: 3px solid var(--q-color-secondary);
+    background-color: var(--q-color-secondary);
+    color: #fff;
+    cursor: pointer;
+  }
+
+  .inactive {
+    border: 3px solid var(--q-color-secondary);
+    background-color: var(--dark-bg-color);
+    color: var(--q-color-secondary);
+    cursor: pointer;
+  }
+}
+
+#ListsList::v-deep {
+  display: flex;
+  flex-flow: column;
+  height: 100%;
+
+  .title:hover {
+    background-color: var(--title-bg-color);
+  }
+
+  .nestable {
+    height: 100%;
+  }
+
+  .nestable-list {
+    display: grid;
+    padding: 0 5px 0 5px !important;
+    grid-template-columns: repeat(auto-fit, 300px);
+    grid-column-gap: 15px;
+    grid-row-gap: 20px;
+    grid-auto-flow: column;
+    grid-auto-columns: 300px;
+    overflow-x: auto;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+  }
+
+  .nestable-item:first-child,
+  .nestable-item-copy:first-child {
+    margin-top: 10px;
+  }
+
+  .card-drag {
+    .nestable-list {
+      display: block;
+      padding: 0 !important;
+      margin: 0;
+      //grid-template-columns: repeat(auto-fit, 300px);
+      //grid-column-gap: 15px;
+      //grid-row-gap: 20px;
+      //grid-auto-flow: column;
+      //grid-auto-columns: 300px;
+      //overflow-x: auto;
+      position: relative;
+      //top: 0;
+      //bottom: 0;
+      //right: 0;
+      //left: 0;
+    }
+
+    .nestable-item:first-child,
+    .nestable-item-copy:first-child {
+      margin-top: 0;
+    }
+  }
+
+  .list-card {
+    width: 100%;
+    max-width: 300px;
+  }
+
+}
+
+input.apple-switch {
+  position: relative;
+  -webkit-appearance: none;
+  outline: none;
+  width: 50px;
+  height: 30px;
+  background-color: #fff;
+  border: 1px solid #D9DADC;
+  border-radius: 50px;
+  box-shadow: inset -20px 0 0 0 #fff;
+  transition: 0.3s all;
+  cursor: pointer;
+}
+
+input.apple-switch:after {
+  content: "";
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  background: transparent;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+input.apple-switch:checked {
+  box-shadow: inset 20px 0 0 0 #4ed164;
+  border-color: #4ed164;
+}
+
+input.apple-switch:checked:after {
+  left: 20px;
+  box-shadow: -2px 4px 3px rgba(0, 0, 0, 0.05);
+}
+
+.show-my-tickets {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  input, span {
+    margin-left: 15px;
+  }
+}
+
+.card-view-nav {
+  display: flex;
+  align-items: center;
+
+  .span {
+    margin-left: 15px;
+  }
+}
+
+.slide-enter-active {
+  transition: all .3s ease;
+}
+
+.slide-leave-active {
+  transition: all .2s ease-in-out;
+}
+
+.slide-enter, .slide-leave-to {
+  transform: translateX(-40px);
+  opacity: 0;
+}

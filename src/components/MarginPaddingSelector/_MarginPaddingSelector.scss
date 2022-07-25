@@ -1,0 +1,17 @@
+#MarginPaddingSelector {
+  p {
+    color: #848484;
+    padding: 0;
+    margin: 0;
+  }
+}
+
+#MarginPaddingSelector::v-deep {
+  select {
+    background-color: transparent;
+  }
+
+  .inputBackground {
+    background-color: #f2f2f2;
+  }
+}

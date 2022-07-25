@@ -1,0 +1,36 @@
+.ChatBox::v-deep {
+  .q-toolbar {
+    padding: 0;
+  }
+  .q-field__after, .q-field__append {
+    padding-left: unset;
+  }
+  .my-emoji {
+    vertical-align: middle;
+    height: 2em;
+    width: 2em;
+  }
+}
+
+.ChatBox {
+  .date-line-line {
+    text-align: center;
+    border-bottom: 1px solid var(--q-color-primary);
+    line-height: 0;
+    padding: 0;
+  }
+
+  .date-line-line .date-line-text {
+    background: var(--date-bg-color);
+    padding: 0 15px;
+  }
+}
+
+.scroll-list::v-deep {
+  flex: 1;
+  .q-scrollarea__container,
+  .q-scrollarea__content {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+}

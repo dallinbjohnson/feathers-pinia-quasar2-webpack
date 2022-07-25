@@ -1,0 +1,27 @@
+#WpbEditor::v-deep {
+  .q-panel {
+    max-height: unset !important;
+  }
+  .q-panel.scroll {
+    overflow: unset;
+  }
+
+  .inactive {
+    outline: 1px dashed grey;
+    &:hover {
+      outline: 2px solid  rgba(50,205,50,1);
+    }
+  }
+  .editing {
+    z-index: 1000;
+    outline: 3.5px solid #4D8EFF;
+  }
+  .q-panel {
+    max-height: var(--parent-height);
+  }
+}
+
+#scrollArea {
+  transition: width 0.7s;
+  transition-timing-function: ease-in-out;
+}

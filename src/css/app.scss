@@ -1,1 +1,786 @@
 // app global css in SCSS form
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap');
+@import 'textbgcolors.scss';
+@import 'ubbox.scss';
+@import 'ubcode.scss';
+@import 'vgt.scss';
+
+/*
+* Override quasar styles
+*/
+
+.q-card {
+  border-radius: 0.8em;
+}
+
+.q-dialog__inner > div {
+  border-radius: 0.8em;
+}
+
+
+/*
+* Custom Variables
+*/
+
+.ub-bordered {
+  border: 1px solid rgba(0, 0, 0, 0.12);
+}
+.body--dark .ub-bordered {
+  border-color: rgba(255, 255, 255, 0.28);
+}
+.ub-btn-dropdown-bare {
+  .q-btn-dropdown__arrow {
+    margin-left: 0px;
+  }
+}
+.db-toolbar {
+  background: #0f2027; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #2c5364, #203a43, #0f2027); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #2c5364, #203a43, #0f2027); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+.ub-page {
+  @media (max-width: $breakpoint-xs-max) {
+    padding: 4px 8px 8px 8px;
+  }
+  @media (min-width: $breakpoint-sm-min) and (max-width: $breakpoint-md-max) {
+    padding: 4px 12px 16px 12px;
+  }
+  @media (min-width: $breakpoint-lg-min) {
+    padding: 4px 12px 24px 12px;
+  }
+}
+
+input:required + div.q-field__label::after,
+.required .q-field__label::after,
+.required .q-checkbox__label::after,
+.required .q-toggle__label::after,
+.required .q-radio__label::after {
+  content: " *";
+  color: red;
+}
+
+.font-2 {
+  font-family: 'Oswald', sans-serif;
+}
+
+
+$background: #EEEEEE;
+$nice: #9e9e9e;
+
+$dark-02: rgba(0,0,0,.2);
+$dark-03: rgba(0,0,0,.3);
+$dark-04: rgba(0,0,0,.4);
+$dark-05: rgba(0,0,0,.5);
+
+.bg-nice {
+  background: var(--q-color-nice);
+}
+
+.preline {
+  white-space: pre-line;
+  word-break: break-word;
+}
+
+.__tool {
+  height: 100%;
+  width: 100%;
+  border-radius: 8px;
+  transform: translate(0, -20%);
+  padding: 2px;
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: 100%;
+  box-shadow: 1px 3px 7px rgba(0,0,0,.4);
+}
+
+.fillitup {
+  height: 100%;
+  width: 100%;
+}
+
+.__one-liner {
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  position: relative;
+}
+
+.text-shade-4 {
+  color: rgba(0,0,0,.4);
+}
+.bg-shade-2 {
+  background: rgba(0,0,0,.2);
+}
+.bg-shade-4 {
+  background: rgba(0,0,0,.4);
+}
+.bg-shade-5 {
+  background: rgba(0,0,0,.5);
+}
+.bg-shade-6 {
+  background: rgba(0,0,0,.6);
+}
+.bg-shade-7 {
+  background: rgba(0,0,0,.7);
+}
+.bg-shade-8 {
+  background: rgba(0,0,0,.8);
+}
+
+.bg-light-4 {
+  background: rgba(255,255,255,.4);
+}
+.text-light-4 {
+  color: rgba(255,255,255,.4);
+}
+.bg-light-5 {
+  background: rgba(255,255,255,.5);
+}
+.bg-light-6 {
+  background: rgba(255,255,255,.6);
+}
+.bg-light-8 {
+  background: rgba(255,255,255,.8);
+}
+.bg-light-8-5 {
+  background: rgba(255,255,255,.85);
+}
+.bg-light-9 {
+  background: rgba(255,255,255,.9);
+}
+
+.__one-liner {
+  max-width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  position: relative;
+}
+
+.fill_size {
+  height: 100%;
+  width: 100%;
+}
+
+.__underline {
+  width: 100%;
+  height: 3px;
+  border-radius: 2px;
+  transition: all .3s ease-out;
+  background: $dark;
+}
+
+.t-r {
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  z-index: 2
+}
+
+.t-r-a {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  z-index: 2
+}
+
+
+.t-r-f {
+  position: fixed;
+  top: 3px;
+  right: 3px;
+  z-index: 2
+}
+
+.t-l-f {
+  position: fixed;
+  top: 3px;
+  left: 3px;
+  z-index: 2
+}
+
+.t-l-a {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2
+}
+.b-r-a {
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  z-index: 2
+}
+.b-r-f {
+  position: fixed;
+  bottom: 0px;
+  right: 0px;
+  z-index: 200
+}
+.b-r {
+  position: absolute;
+  bottom: 3px;
+  right: 3px;
+  z-index: 2
+}
+
+.b-l-a {
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  z-index: 2
+}
+
+.b-l-f {
+  position: fixed;
+  bottom: 3px;
+  left: 3px;
+  z-index: 200;
+}
+
+.b-l {
+  position: absolute;
+  bottom: 3px;
+  left: 3px;
+  z-index: 2
+}
+
+.t-l {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  z-index: 2
+}
+.overlay_8 {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 102vh;
+  width: 102vw;
+  background: rgba(0,0,0,.8);
+  z-index: 9999;
+}
+
+.btn_top_right {
+  position: absolute; top: 5px; right: 5px
+}
+
+.fill-height {
+  height: 100%
+}
+
+.fill-width {
+  width: 100%
+}
+
+.handwriting {
+  font-family: 'AnnieUseYourTelescope', script !important;
+}
+
+.pointer {
+  cursor: pointer
+}
+
+.--y-scroll {
+  height: 100vh;
+  overflow-y: scroll;
+}
+
+.main-font {
+  font-family: 'MavenPro', sans-serif;
+}
+
+.text-primary {
+  color: $primary
+}
+
+.text-0-7 {
+  font-size: .7em
+}
+.text-0-8 {
+  font-size: .8em
+}
+.text-0-9 {
+  font-size: .9em
+}
+.text-1 {
+  font-size: 1em
+}
+
+.text-1-1 {
+  font-size: 1.1em
+}
+.text-1-2 {
+  font-size: 1.2em
+}
+.text-1-3 {
+  font-size: 1.3em
+}
+.text-1-4 {
+  font-size: 1.4em
+}
+.text-1-5 {
+  font-size: 1.5em
+}
+.text-1-6 {
+  font-size: 1.6em
+}
+.text-1-7 {
+  font-size: 1.7em
+}
+
+
+.bg-primary {
+  background: $primary
+}
+
+.bg-background {
+  background: $background
+}
+
+.bg-primary-grad {
+  background: linear-gradient(196deg, $primary, #fafafa)
+}
+
+.bg-dark-grad {
+  background: linear-gradient(196deg, $primary, $dark)
+}
+
+.bg-rdark-grad {
+  background: linear-gradient(-16deg, $primary -15%, $dark)
+}
+
+.bg-primary-accent {
+  background: linear-gradient(196deg, $primary, $accent)
+}
+
+.bg-primary-secondary {
+  background: linear-gradient(196deg, $primary, $secondary)
+}
+
+.bg-accent-secondary {
+  background: linear-gradient(196deg, $accent, $secondary)
+}
+
+.bg-accent-primary {
+  background: linear-gradient(196deg, $accent, $primary)
+}
+
+.text-secondary {
+  color: $secondary
+}
+
+.bg-secondary {
+  background: $secondary
+}
+
+.bg-nice {
+  background: $nice;
+}
+
+.text-nice {
+  color: $nice;
+}
+
+.text-accent {
+  color: $accent
+}
+
+.bg-accent {
+  background: $accent
+}
+
+.bg-accent-grad {
+  background: linear-gradient(196deg, $accent 20%, #101010)
+}
+
+.bg-primary-grad-trans {
+  background: linear-gradient(196deg, $primary -20%, transparent 20%)
+}
+
+.bg-accent-grad-trans {
+  background: linear-gradient(196deg, $accent -20%, transparent 20%)
+}
+
+.bg-secondary-grad-trans {
+  background: linear-gradient(196deg, $secondary -20%, transparent 20%)
+}
+
+.bg-accent-grad-rev {
+  background: linear-gradient(16deg, $accent, #101010)
+}
+
+.text-dark {
+  color: $dark
+}
+
+.text-dark2 {
+  color: $dark-02
+}
+
+.text-dark3 {
+  color: $dark-03
+}
+
+.text-dark4 {
+  color: $dark-04
+}
+
+.text-dark5 {
+  color: $dark-05
+}
+
+.bg-dark {
+  background: $dark
+}
+
+.bg-dark-02 {
+  background: $dark-02
+}
+
+.bg-dark-03 {
+  background: $dark-03
+}
+
+.bg-dark-04 {
+  background: $dark-04
+}
+
+.bg-dark-05 {
+  background: $dark-05
+}
+
+.text-dark-05 {
+  color: $dark-05
+}
+
+.text-light {
+  color: #fafafa
+}
+
+.bg-light {
+  background: #fafafa
+}
+
+.font-08 {
+  font-size: 8px;
+}
+.font-09 {
+  font-size: 9px;
+}
+.font-10 {
+  font-size: 10px;
+}
+.font-11 {
+  font-size: 11px;
+}
+.font-12 {
+  font-size: 12px;
+}
+.font-13 {
+  font-size: 13px;
+}
+.font-14 {
+  font-size: 14px;
+}
+.font-15 {
+  font-size: 15px;
+}
+.font-16 {
+  font-size: 16px;
+}
+.font-17 {
+  font-size: 17px;
+}
+.font-18 {
+  font-size: 18px;
+}
+.font-19 {
+  font-size: 19px;
+}
+.font-20 {
+  font-size: 20px;
+}
+.font-21 {
+  font-size: 21px;
+}
+.font-22 {
+  font-size: 22px;
+}
+.font-23 {
+  font-size: 23px;
+}
+.font-24 {
+  font-size: 24px;
+}
+.font-25 {
+  font-size: 25px;
+}
+.font-30 {
+  font-size: 30px;
+}
+.font-35 {
+  font-size: 35px;
+}
+.font-40 {
+  font-size: 40px;
+}
+.font-50 {
+  font-size: 50px;
+}
+
+
+.text-huge {
+  font-size: 6vw
+}
+
+.text-xxxl {
+  font-size: 4vw
+}
+
+.text-xxl {
+  font-size: 3vw
+}
+
+.text-xl {
+  font-size: 2.3vw
+}
+
+.text-lg {
+  font-size: 1.7vw
+}
+
+.text-md {
+  font-size: 1.5vw
+}
+
+.text-sm {
+  font-size: 1.2vw
+}
+
+.text-xs {
+  font-size: 1vw
+}
+
+.text-xxs {
+  font-size: .75vw
+}
+
+.text-xxxs {
+  font-size: .6vw
+}
+
+@media screen and (min-width: 1700px){
+  .text-huge {
+    font-size: 5vw !important;
+  }
+}
+
+@media screen and (min-width: 2200px){
+  .text-huge {
+    font-size: 4vw !important;
+  }
+}
+
+@media screen and (max-width: 1330px){
+  .text-huge {
+    font-size: 7vw !important;
+  }
+  .text-mb-xxxl {
+    font-size: 4.5vw !important;
+  }
+
+  .text-mb-xxl {
+    font-size: 3.4vw !important
+  }
+
+  .text-mb-xl {
+    font-size: 2.65vw !important
+  }
+
+  .text-mb-lg {
+    font-size: 2.2vw !important
+  }
+
+  .text-mb-md {
+    font-size: 1.75vw !important
+  }
+
+  .text-mb-sm {
+    font-size: 1.45vw !important
+  }
+
+  .text-mb-xs {
+    font-size: 1.2vw !important;
+  }
+
+  .text-mb-xxs {
+    font-size: 1vw !important
+  }
+  .text-mb-xxxs {
+    font-size: .75vw !important;
+  }
+}
+
+
+@media screen and (max-width: 1023px){
+  .text-huge {
+    font-size: 7.5vw !important;
+  }
+  .text-mb-xxxl {
+    font-size: 6vw !important;
+  }
+
+  .text-mb-xxl {
+    font-size: 4.7vw !important
+  }
+
+  .text-mb-xl {
+    font-size: 4vw !important
+  }
+
+  .text-mb-lg {
+    font-size: 3.2vw !important
+  }
+
+  .text-mb-md {
+    font-size: 2.4vw !important
+  }
+
+  .text-mb-sm {
+    font-size: 2vw !important
+  }
+
+  .text-mb-xs {
+    font-size: 1.65vw !important;
+  }
+
+  .text-mb-xxs {
+    font-size: 1.2vw !important
+  }
+  .text-mb-xxxs {
+    font-size: 1vw !important;
+  }
+}
+
+@media screen and (max-width: 799px){
+  .text-huge {
+    font-size: 9vw !important;
+  }
+  .text-mb-xxxl {
+    font-size: 8vw !important;
+  }
+
+  .text-mb-xxl {
+    font-size: 6vw !important
+  }
+
+  .text-mb-xl {
+    font-size: 4.6vw !important
+  }
+
+  .text-mb-lg {
+    font-size: 3.8vw !important
+  }
+
+  .text-mb-md {
+    font-size: 3vw !important
+  }
+
+  .text-mb-sm {
+    font-size: 2.4vw !important
+  }
+
+  .text-mb-xs {
+    font-size: 2vw !important;
+  }
+
+  .text-mb-xxs {
+    font-size: 1.5vw !important
+  }
+  .text-mb-xxxs {
+    font-size: 1.2vw !important;
+  }
+}
+
+@media screen and (max-width: 599px){
+  .text-huge {
+    font-size: 10vw !important;
+  }
+  .text-mb-xxxl {
+    font-size: 9vw !important;
+  }
+
+  .text-mb-xxl {
+    font-size: 7vw !important
+  }
+
+  .text-mb-xl {
+    font-size: 5vw !important
+  }
+
+  .text-mb-lg {
+    font-size: 4.25vw !important
+  }
+
+  .text-mb-md {
+    font-size: 3.65vw !important
+  }
+
+  .text-mb-sm {
+    font-size: 3.2vw !important
+  }
+
+  .text-mb-xs {
+    font-size: 2.65vw !important;
+  }
+
+  .text-mb-xxs {
+    font-size: 2.25vw !important
+  }
+  .text-mb-xxxs {
+    font-size: 1.85vw !important;
+  }
+}
+
+@media screen and (max-width: 450px){
+  .text-huge {
+    font-size: 12vw !important;
+  }
+  .text-mb-xxxl {
+    font-size: 12vw !important;
+  }
+
+  .text-mb-xxl {
+    font-size: 10vw !important
+  }
+
+  .text-mb-xl {
+    font-size: 7.5vw !important
+  }
+
+  .text-mb-lg {
+    font-size: 5.8vw !important
+  }
+
+  .text-mb-md {
+    font-size: 4.25vw !important
+  }
+
+  .text-mb-sm {
+    font-size: 3.65vw !important
+  }
+
+  .text-mb-xs {
+    font-size: 3vw !important;
+  }
+
+  .text-mb-xxs {
+    font-size: 2.7vw !important
+  }
+  .text-mb-xxxs {
+    font-size: 2.3vw !important;
+  }
+}

@@ -1,0 +1,20 @@
+#Notifications::v-deep {
+  .my-menu-link {
+    //color: var(--q-color-primary) !important;
+    background-color: var(--q-color-accent);
+  }
+  .notification-unread {
+    color: var(--q-color-white);
+    background-color: rgba(grey, 0.3);
+  }
+  .active-notification-selected {
+    color: var(--q-color-white);
+    background-color: rgba(var(--q-color-primary-rgb), 0.5);
+  }
+  .q-toolbar {
+    padding: 0;
+  }
+  .q-field__after, .q-field__append {
+    padding-left: unset;
+  }
+}

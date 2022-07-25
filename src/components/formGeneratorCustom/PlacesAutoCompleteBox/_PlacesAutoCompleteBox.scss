@@ -1,0 +1,20 @@
+#PlacesAutoCompleteBox {
+    // Vars
+
+    // Support
+
+    // Module
+    & {
+        //
+    }
+
+    // Facets
+
+    // States
+}
+
+#PlacesAutoCompleteBox::v-deep {
+  .q-item--dark {
+    color: var(--q-color-dark);
+  }
+}

@@ -1,0 +1,20 @@
+#messages::v-deep {
+  .active-link {
+    //color: var(--q-color-primary) !important;
+    background-color: var(--q-color-accent);
+  }
+  .link-unread {
+    color: var(--q-color-white);
+    background-color: rgba(grey, 0.3);
+  }
+  .active-link-selected {
+    color: var(--q-color-white);
+    background-color: rgba(var(--q-color-primary-rgb), 0.5);
+  }
+  .q-toolbar {
+    padding: 0;
+  }
+  .q-field__after, .q-field__append {
+    padding-left: unset;
+  }
+}

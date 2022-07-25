@@ -1,0 +1,30 @@
+.GoogleAddressInput {
+    // Vars
+
+    // Support
+
+    // Module
+    & {
+        //
+    }
+
+    // Facets
+
+    // States
+}
+
+.address {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 6px -10px;
+}
+
+.address > * {
+  width: 256px;
+  padding: 10px;
+}
+
+.fulladdress > * {
+  width: 100%;
+  padding: 20px 20px 0px 20px;
+}

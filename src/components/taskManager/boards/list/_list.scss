@@ -1,0 +1,28 @@
+#boardsList::v-deep {
+  //display: grid;
+  //padding: 0 55px 0 20px;
+  //grid-template-columns: repeat(auto-fit, 250px);
+  //grid-template-rows: repeat(auto-fit, 200px);
+  //grid-column-gap: 15px;
+  //grid-row-gap: 20px;
+
+  .nestable-list {
+    display: grid;
+    padding: 0 55px 0 20px;
+    grid-template-columns: repeat(auto-fit, 250px);
+    //justify-content: center;
+    //grid-template-rows: repeat(auto-fit, 200px);
+    grid-column-gap: 15px;
+    grid-row-gap: 20px;
+  }
+  .nestable-item:first-child,
+  .nestable-item-copy:first-child {
+    margin-top: 10px;
+  }
+
+  .board-card {
+    width: 100%;
+    max-width: 250px;
+    height: 200px;
+  }
+}

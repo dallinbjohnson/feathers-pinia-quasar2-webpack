@@ -1,0 +1,112 @@
+$transition: all 200ms ease-out;
+
+.AccountProfile {
+  box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.25);
+
+  transition: $transition;
+
+  .main-card {
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-color: var(--q-color-secondary);
+
+    transition: $transition;
+
+    .profile-pic {
+      position: absolute;
+      bottom: 25px;
+      left: 25px;
+      z-index: 100;
+      height: 125px;
+      width: 125px;
+
+      transition: $transition;
+    }
+
+    .account-name {
+      margin-left: 175px;
+      font-size: 2em;
+
+      transition: $transition;
+    }
+
+    .edit-label {
+      font-size: unset;
+      opacity: 1;
+
+      transition: $transition;
+    }
+
+    .bottom-bar {
+      padding-left: 175px;
+      height: 15%;
+
+      transition: $transition;
+
+      .tab-icon {
+        margin-right: 10px;
+        font-size: unset;
+
+        transition: $transition;
+      }
+
+      .tab-label {
+        font-size: unset;
+        opacity: 1;
+
+        transition: $transition;
+      }
+    }
+  }
+}
+
+.hover-on-desktop:hover {
+  box-shadow: 2px 2px 4px 2px rgba(0, 0, 0, 0.25);
+  transform: scale(1.02);
+
+  .account-name {
+    font-size: 2.3em;
+  }
+
+  .bottom-bar {
+    height: 20%;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .profile-pic {
+    bottom: unset;
+    top: 25px;
+  }
+
+  .account-name {
+    margin-left: 25px !important;
+  }
+
+  .bottom-bar {
+    padding-left: 0 !important;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .edit-label {
+    font-size: 0 !important;
+    opacity: 0 !important;
+  }
+
+  .tab-icon {
+    margin-right: 0 !important;
+    font-size: 25px !important;
+  }
+
+  .tab-label {
+    font-size: 0 !important;
+    opacity: 0 !important;
+  }
+}
