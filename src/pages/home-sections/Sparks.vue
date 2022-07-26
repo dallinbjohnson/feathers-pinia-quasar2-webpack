@@ -69,6 +69,7 @@
 </template>
 
 <script>
+/* eslint-disable no-undef */
   import ByldLogo from 'assets/svgs/ByldLogo';
 
   export default {

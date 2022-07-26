@@ -75,9 +75,6 @@
       },
       dark: {
         type: Boolean,
-        default() {
-          return this.$q.dark.isActive;
-        },
       },
       flat: {
         type: Boolean,

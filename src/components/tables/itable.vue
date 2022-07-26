@@ -1,6 +1,5 @@
 <template>
-  <q-table
-    dense
+  <q-table dense
     flat
     virtual-scroll
     :data="items"
@@ -12,8 +11,7 @@
     :filter="filter"
     v-model:selected="selected"
     :visible-columns="visibleColumns"
-    :hide-bottom="items.length > 0"
-  >
+    :hide-bottom="items.length > 0">
     <template v-if="showSearch" v-slot:top>
       <q-input v-model="filter" debounce="500" filled dense placeholder="Search" clearable class="full-width">
         <template v-slot:prepend>
@@ -40,8 +38,8 @@
         :props="props"
         class="ub-items-row"
         @click="props.selected = !props.selected"
-        @mouseover.native="onRowMouseOver(props.row)"
-        @mouseleave.native="onRowMouseLeave(props.row)"
+        @mouseover="onRowMouseOver(props.row)"
+        @mouseleave="onRowMouseLeave(props.row)"
       >
         <q-td auto-width v-if="hasSelectionToggle">
           <q-toggle size="xs" v-model="props.selected" :style="`color:${props.row.color};`" />

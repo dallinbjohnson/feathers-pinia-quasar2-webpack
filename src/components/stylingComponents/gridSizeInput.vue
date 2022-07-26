@@ -16,8 +16,8 @@
 </template>
 
 <script>
-import {lodash} from '@iy4u/common-client-lib';
-const {$ldebounce: debounce} = lodash;
+  import {lodash} from '@iy4u/common-client-lib';
+  const {$ldebounce: debounce} = lodash;
 
   export default {
     name: 'gridSizeInput',

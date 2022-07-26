@@ -30,8 +30,8 @@
                   <q-card class="q-ma-md" bordered>
                     <q-card-section>
                       <q-list dense>
-                        <template v-for="(key) in Object.keys(scope.colsMap)">
-                          <q-item :key="key">
+                        <template v-for="(key) in Object.keys(scope.colsMap)" :key="key">
+                          <q-item>
                             <q-item-section>
                               <q-item-label header class="text-bold text-capitalize">
                                 {{ capitalize(kebabize(key).replace('-', ' ')) }}

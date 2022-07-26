@@ -69,61 +69,61 @@
 </template>
 
 <script>
-import DashboardMenuItem from "./components/DashboardMenuItem";
+  import DashboardMenuItem from './components/DashboardMenuItem';
 
 
-export default {
-  name: "dashboard-layout",
-  components: { DashboardMenuItem },
-  props: {
-    dashboardSideMenuLinks: {
-      type: Array,
-      default() {
-        return [];
+  export default {
+    name: 'dashboard-layout',
+    components: { DashboardMenuItem },
+    props: {
+      dashboardSideMenuLinks: {
+        type: Array,
+        default() {
+          return [];
+        }
+      },
+      activeLink: {
+        type: String
+      },
+      layoutStyles: {
+        type: Object
+      },
+      hideDrawer: {
+        type: Boolean
       }
     },
-    activeLink: {
-      type: String
+    data() {
+      return {
+        drawer: false,
+        miniState: false
+      };
     },
-    layoutStyles: {
-      type: Object
+    watch: {
+      hideDrawer: {
+        immediate: true,
+        handler(newValue) {
+          this.drawer = !newValue;
+        }
+      }
     },
-    hideDrawer: {
-      type: Boolean
-    }
-  },
-  data() {
-    return {
-      drawer: false,
-      miniState: false
-    };
-  },
-  watch: {
-    hideDrawer: {
-      immediate: true,
-      handler(newValue) {
-        this.drawer = !newValue;
+    computed: {
+      pageTitle() {
+        const activeTitle = this.dashboardSideMenuLinks.find((link) => link.path === this.activeLink);
+        if (activeTitle) {
+          return activeTitle['title'];
+        }
+        return '';
       }
-    }
-  },
-  computed: {
-    pageTitle() {
-      const activeTitle = this.dashboardSideMenuLinks.find((link) => link.path === this.activeLink);
-      if (activeTitle) {
-        return activeTitle["title"];
-      }
-      return "";
-    }
-  },
-  methods: {
-    clicked(link) {
-      this.$emit("clicked-link", link);
-      console.log(this.$q.screen);
-      if (this.$q.screen.sm || this.$q.screen.xs) {
-        this.drawer = false;
-      }
+    },
+    methods: {
+      clicked(link) {
+        this.$emit('clicked-link', link);
+        console.log(this.$q.screen);
+        if (this.$q.screen.sm || this.$q.screen.xs) {
+          this.drawer = false;
+        }
       //
+      }
     }
-  }
-};
+  };
 </script>

@@ -29,8 +29,8 @@
 
 
       <div class="col-12 col-md-6 q-pa-md">
-        <template v-for="(section, i) in sections">
-          <div class="__main_promo" :key="`section-${i}`" v-show="active === i">
+        <template v-for="(section, i) in sections" :key="`section-${i}`">
+          <div class="__main_promo" v-show="active === i">
             <div class="__img">
 
               <div class="__back_1 bg-primary"></div>
@@ -53,6 +53,7 @@
 </template>
 
 <script>
+/* eslint-disable no-undef */
   import FlipTransition from 'components/common/transitions/FlipTransition';
 
   export default {

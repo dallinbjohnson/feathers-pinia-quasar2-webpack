@@ -221,7 +221,7 @@
   const {$ldebounce: debounce} = lodash;
 
   export default {
-    name: 'font',
+    name: 'fontSettings',
     components: {
       FontPicker,
       ColorPicker,

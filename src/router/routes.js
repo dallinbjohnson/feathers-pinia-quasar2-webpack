@@ -5,18 +5,19 @@ export default function({ store, ssrContext }) {
       path: '/',
       component: () => import('layouts/MainLayout.vue'),
       children: [
-        {
-          path: '',
-          name: 'home',
-          beforeEnter(to, from, next) {
-            if (store.getters['auth/user']) {
-              next({ name: 'dashboard' });
-            } else {
-              next();
-            }
-          },
-          component: () => import('pages/Index.vue')
-        },
+        { path: '', name: 'home', component: () => import('pages/IndexPage.vue') },
+        // {
+        //   path: '',
+        //   name: 'home',
+        //   beforeEnter(to, from, next) {
+        //     if (store.getters['auth/user']) {
+        //       next({ name: 'dashboard' });
+        //     } else {
+        //       next();
+        //     }
+        //   },
+        //   component: () => import('pages/Index.vue')
+        // },
 
         {
           path: 'dashboard',

@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 const nacl = require('tweetnacl');
 const nacl_util = require('tweetnacl-util');
 

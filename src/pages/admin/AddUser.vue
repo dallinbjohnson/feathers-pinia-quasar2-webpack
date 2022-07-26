@@ -65,7 +65,7 @@
         required: false
       }
     },
-    beforeDestroy(){
+    beforeUnmount(){
       this.$emit('clearUser');
     },
     data() {

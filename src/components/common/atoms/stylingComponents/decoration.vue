@@ -286,14 +286,14 @@
         {slot: 'two', value: 'color'}
       ]"
         >
-          <template style="width: 33%" v-slot:one>
+          <template v-slot:one>
             <q-icon name="photo">
               <q-tooltip anchor="bottom middle" self="top middle" :offset="[10, 10]">
                 Image
               </q-tooltip>
             </q-icon>
           </template>
-          <template style="width: 33%" v-slot:two>
+          <template  v-slot:two>
             <q-icon name="palette">
               <q-tooltip anchor="bottom middle" self="top middle" :offset="[10, 10]">
                 Color

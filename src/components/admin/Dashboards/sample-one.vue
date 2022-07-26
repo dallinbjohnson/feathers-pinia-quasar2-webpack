@@ -83,7 +83,7 @@
       this.initialize();
       this.ready = true;
     },
-    beforeDestroy: function() {
+    beforeUnmount: function() {
       if (this.refreshIntervalId) {
         clearInterval(this.refreshIntervalId);
       }

@@ -1,8 +1,8 @@
 <template>
   <q-page>
 
-    <template v-for="(section, i) in sections">
-      <div :key="`section-${i}`" v-bind="{ class: 'full-width', ...section.divAttrs }" :id="`page-${$lget(section, 'id', i)}`">
+    <template v-for="(section, i) in sections" :key="`section-${i}`">
+      <div v-bind="{ class: 'full-width', ...section.divAttrs }" :id="`page-${$lget(section, 'id', i)}`">
         <component :is="section.component" v-bind="section.attrs" v-on="eventHandler()"></component>
       </div>
     </template>
@@ -17,6 +17,7 @@
 </template>
 
 <script>
+/* eslint-disable no-undef */
   import CommonDialog from 'components/common/atoms/dialogs/CommonDialog';
   import ContactForm from 'components/common/atoms/contact/ContactForm';
   export default {

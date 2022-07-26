@@ -14,7 +14,7 @@ const ESLintPlugin = require('eslint-webpack-plugin');
 
 const { configure } = require('quasar/wrappers');
 
-module.exports = configure(function (ctx) {
+module.exports = configure(function(ctx) {
   return {
     // https://v2.quasar.dev/quasar-cli-webpack/supporting-ts
     supportTS: false,
@@ -29,13 +29,20 @@ module.exports = configure(function (ctx) {
       'i18n',
       'axios',
       'iyCommonLib',
+      'iyFormGenLib',
+      'iyAuthManagementLib',
       'feathersClient',
-      'pinia'
+      'pinia',
+      'globalMixins',
+      'dashblocks',
+      'deepdash',
+      // 'VueJss',
+      'VueNestable',
     ],
 
     // https://v2.quasar.dev/quasar-cli-webpack/quasar-config-js#Property%3A-css
     css: [
-      'app.scss'
+      'app.scss',
     ],
 
     // https://github.com/quasarframework/quasar/tree/dev/extras
@@ -58,7 +65,7 @@ module.exports = configure(function (ctx) {
       'eva-icons',
       'fontawesome-v5',
       'themify',
-      'line-awesome'
+      'line-awesome',
     ],
 
     // Full list of options: https://v2.quasar.dev/quasar-cli-webpack/quasar-config-js#Property%3A-build
@@ -69,6 +76,7 @@ module.exports = configure(function (ctx) {
         VUE_APP_FEATHERS_URL: process.env.VUE_APP_FEATHERS_URL,
         TRANSPORT_SECRET: process.env.TRANSPORT_SECRET,
         FONT_PICKER_KEY: JSON.stringify(process.env.FONT_PICKER_KEY),
+        SITE_DOMAIN: process.env.SITE_DOMAIN,
       },
 
       devtool: 'source-map',
@@ -93,20 +101,20 @@ module.exports = configure(function (ctx) {
       // https://v2.quasar.dev/quasar-cli-webpack/handling-webpack
       // "chain" is a webpack-chain object https://github.com/neutrinojs/webpack-chain
 
-      chainWebpack (chain) {
+      chainWebpack(chain) {
         chain.plugin('eslint-webpack-plugin')
-          .use(ESLintPlugin, [{ extensions: [ 'js', 'vue' ] }]);
-      }
+          .use(ESLintPlugin, [{ extensions: ['js', 'vue'] }]);
+      },
 
     },
 
     // Full list of options: https://v2.quasar.dev/quasar-cli-webpack/quasar-config-js#Property%3A-devServer
     devServer: {
       server: {
-        type: 'http'
+        type: 'http',
       },
       port: 8080,
-      open: false // opens browser window automatically
+      open: false, // opens browser window automatically
     },
 
     // https://v2.quasar.dev/quasar-cli-webpack/quasar-config-js#Property%3A-framework
@@ -132,8 +140,8 @@ module.exports = configure(function (ctx) {
         'Loading',
         'SessionStorage',
         'LocalStorage',
-        'AppFullscreen'
-      ]
+        'AppFullscreen',
+      ],
     },
 
     // animations: 'all', // --- includes all animations
@@ -144,7 +152,7 @@ module.exports = configure(function (ctx) {
       'fadeIn',
       'fadeOut',
       'backInLeft',
-      'backOutRight'
+      'backOutRight',
     ],
 
     // https://v2.quasar.dev/quasar-cli-webpack/developing-ssr/configuring-ssr
@@ -158,19 +166,19 @@ module.exports = configure(function (ctx) {
                       // (gets superseded if process.env.PORT is specified at runtime)
 
       maxAge: 1000 * 60 * 60 * 24 * 30,
-        // Tell browser when a file from the server should expire from cache (in ms)
+      // Tell browser when a file from the server should expire from cache (in ms)
 
 
-      chainWebpackWebserver (chain) {
+      chainWebpackWebserver(chain) {
         chain.plugin('eslint-webpack-plugin')
-          .use(ESLintPlugin, [{ extensions: [ 'js' ] }]);
+          .use(ESLintPlugin, [{ extensions: ['js'] }]);
       },
 
 
       middlewares: [
         ctx.prod ? 'compression' : '',
-        'render' // keep this as last one
-      ]
+        'render', // keep this as last one
+      ],
     },
 
     // https://v2.quasar.dev/quasar-cli-webpack/developing-pwa/configuring-pwa
@@ -181,9 +189,9 @@ module.exports = configure(function (ctx) {
       // for the custom service worker ONLY (/src-pwa/custom-service-worker.[js|ts])
       // if using workbox in InjectManifest mode
 
-      chainWebpackCustomSW (chain) {
+      chainWebpackCustomSW(chain) {
         chain.plugin('eslint-webpack-plugin')
-          .use(ESLintPlugin, [{ extensions: [ 'js' ] }]);
+          .use(ESLintPlugin, [{ extensions: ['js'] }]);
       },
 
 
@@ -199,30 +207,30 @@ module.exports = configure(function (ctx) {
           {
             src: 'icons/icon-128x128.png',
             sizes: '128x128',
-            type: 'image/png'
+            type: 'image/png',
           },
           {
             src: 'icons/icon-192x192.png',
             sizes: '192x192',
-            type: 'image/png'
+            type: 'image/png',
           },
           {
             src: 'icons/icon-256x256.png',
             sizes: '256x256',
-            type: 'image/png'
+            type: 'image/png',
           },
           {
             src: 'icons/icon-384x384.png',
             sizes: '384x384',
-            type: 'image/png'
+            type: 'image/png',
           },
           {
             src: 'icons/icon-512x512.png',
             sizes: '512x512',
-            type: 'image/png'
-          }
-        ]
-      }
+            type: 'image/png',
+          },
+        ],
+      },
     },
 
     // Full list of options: https://v2.quasar.dev/quasar-cli-webpack/developing-cordova-apps/configuring-cordova
@@ -232,7 +240,7 @@ module.exports = configure(function (ctx) {
 
     // Full list of options: https://v2.quasar.dev/quasar-cli-webpack/developing-capacitor-apps/configuring-capacitor
     capacitor: {
-      hideSplashscreen: true
+      hideSplashscreen: true,
     },
 
     // Full list of options: https://v2.quasar.dev/quasar-cli-webpack/developing-electron-apps/configuring-electron
@@ -255,23 +263,22 @@ module.exports = configure(function (ctx) {
       builder: {
         // https://www.electron.build/configuration/configuration
 
-        appId: 'test-quasar2-webpack'
+        appId: 'test-quasar2-webpack',
       },
 
       // "chain" is a webpack-chain object https://github.com/neutrinojs/webpack-chain
 
-      chainWebpackMain (chain) {
+      chainWebpackMain(chain) {
         chain.plugin('eslint-webpack-plugin')
-          .use(ESLintPlugin, [{ extensions: [ 'js' ] }]);
+          .use(ESLintPlugin, [{ extensions: ['js'] }]);
       },
 
 
-
-      chainWebpackPreload (chain) {
+      chainWebpackPreload(chain) {
         chain.plugin('eslint-webpack-plugin')
-          .use(ESLintPlugin, [{ extensions: [ 'js' ] }]);
+          .use(ESLintPlugin, [{ extensions: ['js'] }]);
       },
 
-    }
+    },
   };
 });

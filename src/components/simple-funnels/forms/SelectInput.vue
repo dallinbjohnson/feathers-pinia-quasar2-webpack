@@ -11,7 +11,7 @@
 <script>
   import { SelectMixin } from '@iy4u/common-client-lib';
   export default {
-    name: 'Select',
+    name: 'SelectInput',
     mixins: [SelectMixin],
     computed: {
       attrs(){

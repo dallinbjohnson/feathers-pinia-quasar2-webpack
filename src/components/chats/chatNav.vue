@@ -89,7 +89,7 @@
 
 <script>
   export default {
-    name: 'nav',
+    name: 'chatNav',
   };
 </script>
 

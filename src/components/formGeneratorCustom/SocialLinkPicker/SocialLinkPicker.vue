@@ -4,9 +4,8 @@
       <q-card-section>
         <label class="text-weight-bold">Social Links:</label>
 
-        <template v-for="(formData, index) in listFormData">
-          <transition :key="index"
-                      appear
+        <template v-for="(formData, index) in listFormData" :key="index">
+          <transition appear
                       enter-active-class="animated backInLeft"
                       leave-active-class="animated backOutRight">
             <q-card :class="{'q-mt-sm': index !== 0}">
@@ -37,7 +36,9 @@
                       v-bind="scope.itemProps"
                       v-on="scope.itemEvents">
                       <q-item-section>
-                        <q-item-label v-html="scope.opt.label"/>
+                        <q-item-label>
+                          <span v-html="scope.opt.label"></span>
+                        </q-item-label>
                       </q-item-section>
                     </q-item>
                   </template>

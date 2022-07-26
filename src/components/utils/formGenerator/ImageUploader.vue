@@ -346,7 +346,6 @@
       handleFilePondProcessfile: function (error, file) {
         // eslint-disable-next-line no-console
         console.log('FilePond succesfully processed file:', file.filename);
-        this.$nextTick();
       },
       handleFilePondRemovefile: function (error, file) {
         // eslint-disable-next-line no-console
@@ -355,7 +354,6 @@
         let index = this.uploadedFiles.indexOf(this.$lfind(this.uploadedFiles, {file: file.file}));
         if (index > -1) {
           this.uploadedFiles.splice(index, 1);
-          this.$nextTick();
         }
       },
       handleFilePondPrepareFile: function (file, output) {

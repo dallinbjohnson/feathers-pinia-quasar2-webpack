@@ -1,8 +1,13 @@
 <template>
   <div id="cardFormDialog">
-    <q-dialog :value="value" @input="$emit('input', $event)" :position="dialog_position"
-              :full-height="dialog_position === 'right'" :seamless="dialog_position === 'right'">
-      <q-layout view="Lhh LpR Lff" container :class="$q.dark.mode ? 'bg-dark' : 'bg-white'"
+    <q-dialog :value="value"
+              @input="$emit('input', $event)"
+              :position="dialog_position"
+              :full-height="dialog_position === 'right'"
+              :seamless="dialog_position === 'right'">
+      <q-layout view="Lhh LpR Lff"
+                container
+                :class="$q.dark.mode ? 'bg-dark' : 'bg-white'"
                 :style="(dialog_position === 'right' ? `width: ${$data.$windowWidth < 420 ? $data.$windowWidth - 10 : 400}px;` : '') + ' overflow: visible !important;'">
         <q-header class="bg-primary">
           <q-toolbar>
@@ -22,8 +27,12 @@
         </q-header>
 
         <q-drawer bordered v-model="card_comment_drawer"
-                  :width="$data.$windowWidth < 420 ? $data.$windowWidth - 25 : 350" content-class="shadow-1"
-                  class="comment-drawer" :breakpoint="100" persistent overlay>
+                  :width="$data.$windowWidth < 420 ? $data.$windowWidth - 25 : 350"
+                  content-class="shadow-1"
+                  class="comment-drawer"
+                  :breakpoint="100"
+                  persistent
+                  overlay>
           <q-page-sticky position="top-right" :offset="[5, -45]" style="z-index: 100;">
             <q-btn @click="card_comment_drawer = false" flat dense round icon="close"></q-btn>
           </q-page-sticky>
@@ -52,17 +61,22 @@
               </div>
               <div class="q-mt-sm" v-html="comment.comment"></div>
               <div class="actions-buttons-wrapper">
-                <q-fab
-                  label-position="top"
+                <q-fab label-position="top"
                   external-label
                   color="primary"
                   icon="keyboard_arrow_left"
                   direction="left"
                   padding="xs"
                   @click.stop>
-                  <q-fab-action @click.stop="openEditComment(comment)" padding="5px" external-label color="primary"
+                  <q-fab-action @click.stop="openEditComment(comment)"
+                                padding="5px"
+                                external-label
+                                color="primary"
                                 icon="create"/>
-                  <q-fab-action padding="5px" external-label color="orange" @click.stop="deleteComment(comment)"
+                  <q-fab-action padding="5px"
+                                external-label
+                                color="orange"
+                                @click.stop="deleteComment(comment)"
                                 icon="delete"/>
                 </q-fab>
               </div>
@@ -72,18 +86,18 @@
             <q-editor class="comment-rich-editor"
                       v-model="commentInputVal"
                       :definitions="{
-                                      upload: {
-                                        tip: 'Upload an image',
-                                        icon: 'photo',
-                                        handler: insertImg
-                                      },
-                                      save: {
-                                        tip: 'Add comment',
-                                        icon: 'send',
-                                        handler: addComment,
-                                        color: 'blue',
-                                      }
-                                    }"
+                        upload: {
+                          tip: 'Upload an image',
+                          icon: 'photo',
+                          handler: insertImg
+                        },
+                        save: {
+                          tip: 'Add comment',
+                          icon: 'send',
+                          handler: addComment,
+                          color: 'blue',
+                        }
+                      }"
                       :toolbar="[...toolbar, ['upload', 'save']]"/>
           </div>
         </q-drawer>
@@ -105,7 +119,9 @@
                   </q-item-section>
                   <q-item-section>
                     <!--<q-item-label v-html="scope.opt.name" />-->
-                    <q-item-label v-html="option_label(scope.opt)"/>
+                    <q-item-label>
+                      <span v-html="option_label(scope.opt)"></span>
+                    </q-item-label>
                     <q-item-label caption>{{ scope.opt.email }}</q-item-label>
                   </q-item-section>
                 </q-item>
@@ -149,20 +165,21 @@
         </q-card-section>
 
         <q-card-section class="q-pt-none edit-comment-popup">
-          <q-editor class="edit-comment-form" v-model="editCommentInputVal"
+          <q-editor class="edit-comment-form"
+                    v-model="editCommentInputVal"
                     :definitions="{
-                                      upload: {
-                                        tip: 'Upload an image',
-                                        icon: 'photo',
-                                        handler: insertImg
-                                      },
-                                      save: {
-                                        tip: 'Add comment',
-                                        icon: 'send',
-                                        handler: addComment,
-                                        color: 'blue',
-                                      }
-                                    }"
+                      upload: {
+                        tip: 'Upload an image',
+                        icon: 'photo',
+                        handler: insertImg
+                      },
+                      save: {
+                        tip: 'Add comment',
+                        icon: 'send',
+                        handler: addComment,
+                        color: 'blue',
+                      }
+                    }"
                     :toolbar="[...toolbar, ['fullscreen']]"/>
           <q-card-actions align="right" class="text-primary">
             <q-btn flat label="Cancel" v-close-popup/>

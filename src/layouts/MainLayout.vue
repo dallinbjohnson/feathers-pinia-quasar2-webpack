@@ -4,24 +4,15 @@
       <q-toolbar :class="$q.dark.isActive ? 'bg-dark' : 'bg-white'"
                  :style="{ height: scrollY > 100 ? '50px' : '80px', transition: 'all .3s ease-out' }">
         <div class="full-width row items-center">
-          <q-btn v-if="!$lisEmpty($authUser)" color="primary" dense flat round icon="menu" @click="leftShown = !leftShown"/>
+          <q-btn v-if="!$lisEmpty($authUser)" color="primary" dense flat round icon="menu"
+                 @click="leftShown = !leftShown" />
 
           <q-btn flat padding="0" color="primary" class="q-ml-sm-lg">
-            <template v-if="$route.name === 'home'">
-              <flip-x-transition>
-                <div v-if="scrollY > 150" class="q-px-md sm_logo">
-                  <q-img :style="{ width: '100%', maxWidth:  '28vw' }"
-                         :src="logo"></q-img>
-                </div>
-              </flip-x-transition>
-            </template>
-            <template v-else>
-              <q-img @click="$routerPreserve({name: 'home'})"
-                     :style="{ width: 'clamp(30px, 12vw, 50px)' }"
-                     :src="logo"></q-img>
-            </template>
+            <q-img @click="$routerPreserve({name: 'home'})"
+                   :style="{ width: 'clamp(30px, 12vw, 50px)' }"
+                   :src="logo"></q-img>
           </q-btn>
-          <q-space/>
+          <q-space />
           <header-nav @menuMini="menuMini = $event" @menuAutoExpand="menuAutoExpand = $event"></header-nav>
         </div>
       </q-toolbar>
@@ -36,7 +27,7 @@
     </menu-drawer>
 
     <q-page-container>
-      <router-view :key="$route.path"/>
+      <router-view :key="$route.path" />
     </q-page-container>
 
     <q-footer v-if="$lisEmpty($authUser)">
@@ -53,9 +44,8 @@
 </template>
 
 <script>
-/* eslint-disable no-undef */
+  /* eslint-disable no-undef */
   import ContactFooter from 'components/common/atoms/footers/ContactFooter';
-  import FlipXTransition from 'components/common/transitions/FlipXTransition';
   import headerNav from 'components/headers/headerNav';
   import MenuDrawer from 'components/menus/MenuDrawer.vue';
   import MenuList from 'components/menus/MenuList.vue';
@@ -65,7 +55,6 @@
     mixins: [],
     components: {
       headerNav,
-      FlipXTransition,
       ContactFooter,
       MenuDrawer,
       MenuList,
@@ -89,12 +78,12 @@
           {
             title: 'Home',
             icon: 'fas fa-home',
-            to: {name: 'home'},
+            to: { name: 'home' },
           },
           {
             title: 'Websites',
             icon: 'fas fa-sitemap',
-            to: {name: 'projects'},
+            to: { name: 'projects' },
           },
         ];
       },

@@ -14,7 +14,7 @@
                   :value="value"
                   :required="required"
                   :rules="required ? [v => !!v || 'This field is required'].concat(rules) : rules"
-                  @input.native="handleInput($event.target.value)"
+                  @input="handleInput($event.target.value)"
                   @click:clear="$emit('input', '')"
                   :type="$attrs.type ? $attrs.type : 'text'"
                   :clearable="clearable"

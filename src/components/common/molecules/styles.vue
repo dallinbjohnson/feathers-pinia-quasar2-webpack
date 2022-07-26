@@ -261,7 +261,7 @@
 <script>
   import General from '../atoms/stylingComponents/general';
   import Dimension from '../atoms/stylingComponents/dimension';
-  import FontSettings from '../atoms/stylingComponents/font';
+  import FontSettings from '../atoms/stylingComponents/fontSettings';
   import borderSettings from '../atoms/stylingComponents/borderSettings';
   import ButtonEditor from '../atoms/stylingComponents/buttonEditor';
   import {mapActions, mapGetters} from 'vuex';

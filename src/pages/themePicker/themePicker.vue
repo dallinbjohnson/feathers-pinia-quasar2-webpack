@@ -82,6 +82,7 @@
 </template>
 
 <script>
+  /* eslint-disable no-undef */
   import {mapGetters} from 'vuex';
 
   import colorPicker from '@iy4u/form-gen-client-lib/src/components/common/atoms/ColorSelectorRoundInput/ColorSelectorRoundInput.vue';

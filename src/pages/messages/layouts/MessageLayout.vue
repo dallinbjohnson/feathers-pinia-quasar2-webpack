@@ -21,50 +21,46 @@
                       </q-avatar>
                       itpomi
                     </div>-->
-          <q-btn
-            flat
-            dense
-            icon="menu"
-            aria-label="Menu"
-            @click="drawer = !drawer"
-          />
+          <q-btn flat
+                 dense
+                 icon="menu"
+                 aria-label="Menu"
+                 @click="drawer = !drawer" />
 
         </q-toolbar>
       </q-header>
 
-      <q-drawer
-        v-model="drawer"
-        show-if-above
-        :width="300"
-        :breakpoint="1028"
-        content-class="bg-grey-3"
-      >
+      <q-drawer v-model="drawer"
+                show-if-above
+                :width="300"
+                :breakpoint="1028"
+                content-class="bg-grey-3">
         <q-scroll-area class="fit">
           <q-list padding>
             <q-item class="q-py-md">
               <q-item-section>
-                <q-btn no-caps color="primary" outline icon="add" class="column q-gutter-none"
+                <q-btn no-caps
+                       color="primary"
+                       outline
+                       icon="add"
+                       class="column q-gutter-none"
                        @click="activeLink='add'">
                   <span class="q-my-none test-bold">Create a business profile</span>
                 </q-btn>
               </q-item-section>
               <q-item-section @click.stop="drawer=false" avatar class="q-mx-md lt-sm">
-                <q-icon color="primary" size="md" name="close"/>
+                <q-icon color="primary" size="md" name="close" />
               </q-item-section>
             </q-item>
             <q-item>
               <q-item-section>
-                <q-input placeholder="Filter Wallets" icon="search"/>
+                <q-input placeholder="Filter Wallets" icon="search" />
               </q-item-section>
             </q-item>
-            <template
-              v-for="link in bankLinks"
-            >
-              <bank-link
-                @active="activeLink=$event"
-                v-bind="link"
-                :key="link.title"
-              />
+            <template v-for="link in bankLinks"
+                      :key="link.title">
+              <bank-link @active="activeLink=$event"
+                         v-bind="link" />
             </template>
           </q-list>
         </q-scroll-area>
@@ -86,9 +82,7 @@
 
   export default {
     name: 'MessageLayout',
-    mixins: [
-
-    ],
+    mixins: [],
     data() {
       return {
         drawer: false,
@@ -146,7 +140,7 @@
         // if (id !== accountId) {
         //   this.$router.push(`/banks/${bankId}/accounts/${accountId}`);
         // }
-        console.log({bankId, accountId});
+        console.log({ bankId, accountId });
       },
     },
   };

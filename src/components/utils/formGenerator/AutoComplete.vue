@@ -37,9 +37,7 @@
               :borderless="borderless"
               input-debounce="0"
               @filter="filterFn"
-              @new-value="createValue"
-
-    >
+              @new-value="createValue">
       <template v-slot:no-option v-if="$attrs.noOption">
         <q-item>
           <q-item-section class="text-italic text-grey">
@@ -47,20 +45,20 @@
           </q-item-section>
         </q-item>
       </template>
-      <template slot="before-options">
+      <template v-slot:before-options>
         <slot name="beforeOptions"></slot>
       </template>
-      <q-icon slot="prepend" :color="icon_color" v-if="prepend_icon" :name="prepend_icon">
+      <q-icon v-if="prepend_icon" :color="icon_color" :name="prepend_icon">
       </q-icon>
 
       <template v-slot:selected-item="data" v-if="chips">
         <q-chip removable
-                @remove="handleClick(data.opt, data.selected, data.index)"
-        >
+                @remove="handleClick(data.opt, data.selected, data.index)">
           <q-avatar v-if="avatarOn">
             <img :src="data.opt[option_avatar]">
           </q-avatar>
-          <q-icon v-if="iconOn" :style="{marginRight: '12px', color: icon_color}"
+          <q-icon v-if="iconOn"
+                  :style="{marginRight: '12px', color: icon_color}"
                   :name="data.opt[option_avatar]"></q-icon>
           {{data.opt[optionText]}}
         </q-chip>
@@ -79,8 +77,9 @@
             <template v-if="dataItemSlot">
               <slot name="dataItemSlot" :data="data.opt"></slot>
             </template>
-            <q-item-label v-if="!dataItemSlot"
-                          v-html="optionText ? data.opt[optionText] : data.opt"></q-item-label>
+            <q-item-label v-if="!dataItemSlot">
+              <span v-html="optionText ? data.opt[optionText] : data.opt"></span>
+            </q-item-label>
             <q-item-label caption>{{data.opt[item_subtitle]}}</q-item-label>
           </q-item-section>
           <q-item-section v-if="multiple">

@@ -40,9 +40,9 @@
               </div>
             </q-card-section>
             <q-card-section class="q-pt-none">
-              <span class="text-h6">Active for </span><span>{{ selectedCard.createdAt | daysPast }} days</span>
+              <span class="text-h6">Active for </span><span>{{ daysPast(selectedCard.createdAt) }} days</span>
               <br/>
-              <span class="text-h6">Created on </span><span>{{ selectedCard.createdAt | format }}</span>
+              <span class="text-h6">Created on </span><span>{{ format(selectedCard.createdAt) }}</span>
               <!--            <span class="text-h6">Modified on </span><span>{{ selectedCard.updatedAt | format }}</span>-->
             </q-card-section>
           </q-card>
@@ -74,9 +74,9 @@
           </div>
         </q-card-section>
         <q-card-section class="q-pt-none">
-          <span class="text-h6">Active for </span><span>{{ selectedCard.createdAt | daysPast }} days</span>
+          <span class="text-h6">Active for </span><span>{{ daysPast(selectedCard.createdAt)  }} days</span>
           <br/>
-          <span class="text-h6">Created on </span><span>{{ selectedCard.createdAt | format }}</span>
+          <span class="text-h6">Created on </span><span>{{ format(selectedCard.createdAt) }}</span>
           <!--            <span class="text-h6">Modified on </span><span>{{ selectedCard.updatedAt | format }}</span>-->
         </q-card-section>
       </q-card>
@@ -122,16 +122,6 @@
         dialogOnSmall: false,
       };
     },
-    filters: {
-      format(date) {
-        return dateFormat(date);
-      },
-      daysPast(date) {
-        let diffInTime = new Date().getTime() - new Date(date).getTime();
-        let diffInDays = diffInTime / (1000 * 3600 * 24);
-        return diffInDays < 1 ? 0 : diffInDays.toFixed(0);
-      },
-    },
     computed: {
       ...mapGetters('lists', {
         getLists: 'find',
@@ -164,6 +154,14 @@
       ...mapActions('lists', {
         loadLists: 'find',
       }),
+      format(date) {
+        return dateFormat(date);
+      },
+      daysPast(date) {
+        let diffInTime = new Date().getTime() - new Date(date).getTime();
+        let diffInDays = diffInTime / (1000 * 3600 * 24);
+        return diffInDays < 1 ? 0 : diffInDays.toFixed(0);
+      },
       updateSelected(card) {
         this.selectedCard = card;
       },

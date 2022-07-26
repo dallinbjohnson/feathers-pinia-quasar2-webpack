@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 module.exports = function isEmpty(val, options = {}) {
   let result = false;
   let returnDetails = false;

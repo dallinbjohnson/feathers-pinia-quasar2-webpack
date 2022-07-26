@@ -7,6 +7,7 @@
 </template>
 
 <script>
+/* eslint-disable no-undef */
   import SimpleFunnel from 'components/simple-funnels';
 
   export default {

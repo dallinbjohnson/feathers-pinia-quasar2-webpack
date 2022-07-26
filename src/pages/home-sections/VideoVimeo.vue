@@ -10,7 +10,7 @@
 
 <script>
   export default {
-    name: 'Video'
+    name: 'VideoVimeo'
   };
 </script>
 

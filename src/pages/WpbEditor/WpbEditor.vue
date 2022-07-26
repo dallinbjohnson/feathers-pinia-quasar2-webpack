@@ -980,7 +980,7 @@
       this.currentElement = {};
       next();
     },
-    beforeDestroy() {
+    beforeUnmount() {
 
       // removes the font link tag so we don't load unnecessary styles.
       if (document.getElementById('PageFonts')) {

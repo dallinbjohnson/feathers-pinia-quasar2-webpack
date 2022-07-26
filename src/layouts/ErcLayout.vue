@@ -98,6 +98,7 @@
 </template>
 
 <script>
+/* eslint-disable no-undef */
   export default {
     name: 'ErcLayout',
     mixins: [],

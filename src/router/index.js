@@ -1,6 +1,9 @@
 import { route } from 'quasar/wrappers';
 import { createRouter, createMemoryHistory, createWebHistory, createWebHashHistory } from 'vue-router';
-import routes from './routes';
+
+import Routes from './routes';
+import ErcRoutes from './ercRoutes';
+// import adminRoutes from './adminRoutes';
 
 /*
  * If not building with SSR mode, you can
@@ -11,7 +14,17 @@ import routes from './routes';
  * with the Router instance.
  */
 
-export default route(function (/* { store, ssrContext } */) {
+const host = window.location.host;
+
+export default route(function({ store, ssrContext }) {
+  let routes = [];
+  let siteDomains = (process.env.SITE_DOMAIN || '127.0.0.1,localhost').split(',');
+  if (!siteDomains.some(item => host.includes(item))) {
+    routes = ErcRoutes({ store, ssrContext });
+  } else {
+    routes = Routes({ store, ssrContext });
+  }
+
   const createHistory = process.env.SERVER
     ? createMemoryHistory
     : (process.env.VUE_ROUTER_MODE === 'history' ? createWebHistory : createWebHashHistory);
@@ -23,7 +36,7 @@ export default route(function (/* { store, ssrContext } */) {
     // Leave this as is and make changes in quasar.conf.js instead!
     // quasar.conf.js -> build -> vueRouterMode
     // quasar.conf.js -> build -> publicPath
-    history: createHistory(process.env.MODE === 'ssr' ? void 0 : process.env.VUE_ROUTER_BASE)
+    history: createHistory(process.env.MODE === 'ssr' ? void 0 : process.env.VUE_ROUTER_BASE),
   });
 
   return Router;
