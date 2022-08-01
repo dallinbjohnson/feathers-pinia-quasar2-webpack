@@ -36,7 +36,7 @@ export default route(function ( { store/*, ssrContext*/ } ) {
         password: 'W3lc0m3^',
       })
         .then(() => {
-          // console.log('authenticated');
+          console.log('authenticated');
           // console.log('getters user', store.getters['auth/user']);
           if (to.meta.requiresAuth) {
             if (store.getters['auth/isAuthenticated']) {
