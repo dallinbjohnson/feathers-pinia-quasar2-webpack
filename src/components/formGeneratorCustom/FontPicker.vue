@@ -21,7 +21,8 @@
 </template>
 
 <script>
-  import { FontManager } from 'font-picker';
+  import FontPicker from 'font-picker';
+
   export default {
     name: 'FontPicker',
     props: ['activeFont', 'apiKey', 'options'],
@@ -44,8 +45,8 @@
       } else {
         this.pickerSuffix = '';
       }
-      // Initialize FontManager object and generate the font list
-      this.fontManager = new FontManager(
+      // Initialize FontPicker object and generate the font list
+      this.fontManager = new FontPicker(
         this.apiKey,
         this.activeFont,
         this.options

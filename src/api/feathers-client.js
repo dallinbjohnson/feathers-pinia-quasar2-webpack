@@ -2,7 +2,7 @@ import feathers from '@feathersjs/feathers';
 import socketio from '@feathersjs/socketio-client';
 import auth from '@feathersjs/authentication-client';
 import io from 'socket.io-client';
-import { batchClient } from 'feathers-batch/client';
+// import { batchClient } from 'feathers-batch/client';
 import { iff, discard, paramsForServer } from 'feathers-hooks-common';
 // import { paramsForServer } from "feathers-graph-populate";
 
@@ -48,7 +48,6 @@ const feathersClient = feathers()
           const query = { ...context.params.query };
           const params = { ...context.params, query };
           context.params = paramsForServer(params);
-          console.log(JSON.stringify(context.params));
         }
         // paramsForServer(
         //   'disableSoftDelete',
@@ -114,10 +113,10 @@ const feathersClient = feathers()
     }
   });
 
-feathersClient.configure(batchClient({
-  batchService: 'batch',
-  exclude: ['authentication']
-}));
+// feathersClient.configure(batchClient({
+//   batchService: 'batch',
+//   exclude: ['authentication']
+// }));
 
 
 export default feathersClient;

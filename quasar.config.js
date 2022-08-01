@@ -31,6 +31,7 @@ module.exports = configure(function(ctx) {
       'iyCommonLib',
       'iyFormGenLib',
       'iyAuthManagementLib',
+      'IrRoles',
       'feathersClient',
       'pinia',
       'globalMixins',

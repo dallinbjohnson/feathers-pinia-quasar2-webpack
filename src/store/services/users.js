@@ -60,7 +60,7 @@ class Users extends BaseModel {
     };
   }
 
-  static setupInstance(data, { /*store, */models }) {
+  static setupInstance(data, { models }) {
     if ($lget(data, '_fastjoin.logins.ids', []).length) {
       $lset(data, '_fastjoin.logins.ids', $lget(data, '_fastjoin.logins.ids', []).map(account => new models.api.Logins(account)));
     }
@@ -119,7 +119,7 @@ feathersClient.service(servicePath).hooks({
     remove: [],
   },
   error: {
-    all: [ctx => console.log(ctx)],
+    all: [],
     find: [],
     get: [],
     create: [],

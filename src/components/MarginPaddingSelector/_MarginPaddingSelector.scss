@@ -6,7 +6,7 @@
   }
 }
 
-#MarginPaddingSelector::v-deep {
+#MarginPaddingSelector:deep {
   select {
     background-color: transparent;
   }

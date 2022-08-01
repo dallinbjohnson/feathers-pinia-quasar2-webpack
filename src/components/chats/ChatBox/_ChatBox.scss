@@ -1,4 +1,4 @@
-.ChatBox::v-deep {
+.ChatBox:deep {
   .q-toolbar {
     padding: 0;
   }
@@ -26,7 +26,7 @@
   }
 }
 
-.scroll-list::v-deep {
+.scroll-list:deep {
   flex: 1;
   .q-scrollarea__container,
   .q-scrollarea__content {

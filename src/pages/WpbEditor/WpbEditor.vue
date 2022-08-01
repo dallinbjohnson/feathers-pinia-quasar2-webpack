@@ -365,11 +365,9 @@
 </template>
 
 <script>
-  import Vue from 'vue';
   import {scroll} from 'quasar';
   import {makeGetMixin, models} from '@feathersjs/vuex';
   import {mapActions, mapGetters, mapState} from 'vuex';
-  import Plugin from '@quasar/quasar-ui-qiconpicker';
   import '@quasar/quasar-ui-qiconpicker/dist/index.css';
   import VueLottiePlayer from 'vue-lottie-player';
   import classesMixin from 'src/mixins/classesMixin';
@@ -384,9 +382,6 @@
   import publishing from '../../components/publishing/publishing';
   import CssEditor from 'components/common/molecules/CSSEditor';
   // import colorPicker from 'components/common/atoms/stylingComponents/colorPicker';
-
-
-  Vue.use(Plugin);
 
 
   let {getScrollTarget, setScrollPosition} = scroll;

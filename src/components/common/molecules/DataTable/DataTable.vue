@@ -135,10 +135,10 @@
               </q-icon>
             </span>
             <span v-else style="white-space: normal;">
-              <v-clamp autoresize :max-lines="1" :max-height="24"
-                       @clampchange="$set(isClamped, col.name + props.pageIndex, $event)">
+<!--              <v-clamp autoresize :max-lines="1" :max-height="24"-->
+<!--                       @clampchange="$set(isClamped, col.name + props.pageIndex, $event)">-->
                 {{ col.value }}
-              </v-clamp>
+<!--              </v-clamp>-->
               <q-tooltip v-if="isClamped[col.name + props.pageIndex]"
                          content-style="font-size: 14pt;"
                          transition-show="scale"
@@ -272,10 +272,10 @@
                   <q-item-section>
                     <q-item-label caption style="text-align: right;">
                       <span style="white-space: normal;">
-                        <v-clamp autoresize :max-lines="1" :max-height="24"
-                                 @clampchange="$set(isClamped, col.name + props.pageIndex, $event)">
+<!--                        <v-clamp autoresize :max-lines="1" :max-height="24"-->
+<!--                                 @clampchange="$set(isClamped, col.name + props.pageIndex, $event)">-->
                           {{ col.value }}
-                        </v-clamp>
+<!--                        </v-clamp>-->
                         <q-tooltip v-if="isClamped[col.name + props.pageIndex]"
                                    content-style="font-size: 14pt;"
                                    transition-show="scale"
@@ -299,13 +299,13 @@
 <script>
   // import {routerMixin} from '@iy4u/common-client-lib';
 
-  import VClamp from 'vue-clamp';
+  // import VClamp from 'vue-clamp';
 
   export default {
     name: 'DataTable',
     inheritAttrs: false,
     components: {
-      VClamp,
+      // VClamp,
     },
     props: {
       title: {
@@ -422,7 +422,7 @@
 </script>
 
 <style scoped lang="scss">
-  #DataTable::v-deep {
+  #DataTable:deep {
     .q-table__card.my-sticky-header-column-table {
       max-height: calc(100vh - 70px);
 

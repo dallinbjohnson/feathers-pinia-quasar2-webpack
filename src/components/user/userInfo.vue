@@ -33,7 +33,7 @@
       <q-separator v-if="$q.screen.gt.xs"/>
 
       <div class="q-px-md text-overline">Links</div>
-      <q-item v-if="(!$lisEmpty($authUser) && this.$can('route', 'admin'))" class="q-py-xs q-px-md" clickable v-ripple
+      <q-item v-if="(!$lisEmpty($authUser) && $can('route', 'admin'))" class="q-py-xs q-px-md" clickable v-ripple
               v-close-popup :to="{path: '/admin'}">
         <q-item-section v-if="$q.screen.gt.xs" avatar>
           <q-icon name="fas fa-users-cog"></q-icon>

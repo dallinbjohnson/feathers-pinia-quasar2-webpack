@@ -63,13 +63,13 @@ class Logins extends BaseModel {
     };
   }
 
-  static setupInstance(data, { /*store, */models }) {
-    if ($lget(data, '_fastjoin.accounts.owns.ids', []).length) {
-      $lset(data, '_fastjoin.accounts.owns.ids', $lget(data, '_fastjoin.accounts.owns.ids', []).map(account => new models.api.Accounts(account)));
-    }
-    if ($lget(data, '_fastjoin.accounts.owns.active')) {
-      $lset(data, '_fastjoin.accounts.owns.active', new models.api.Accounts($lget(data, '_fastjoin.accounts.owns.active')));
-    }
+  static setupInstance(data/*, { models }*/) {
+    // if ($lget(data, '_fastjoin.accounts.owns.ids', []).length) {
+    //   $lset(data, '_fastjoin.accounts.owns.ids', $lget(data, '_fastjoin.accounts.owns.ids', []).map(account => new models.api.Accounts(account)));
+    // }
+    // if ($lget(data, '_fastjoin.accounts.owns.active')) {
+    //   $lset(data, '_fastjoin.accounts.owns.active', new models.api.Accounts($lget(data, '_fastjoin.accounts.owns.active')));
+    // }
 
     let createdAt = $lget(data, 'createdAt');
     if (typeof createdAt === 'string') {

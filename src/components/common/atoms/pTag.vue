@@ -154,7 +154,7 @@
 </script>
 
 <style scoped lang="scss">
-  #TheText::v-deep {
+  #TheText:deep {
     .q-textarea {
       .q-field__control-container {
         padding: 0;

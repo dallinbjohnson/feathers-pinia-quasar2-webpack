@@ -221,7 +221,7 @@
 </script>
 
 <style scoped lang="scss">
-  #ChatMessage::v-deep {
+  #ChatMessage:deep {
     p, h4, h5, h6 {
       margin: 0;
     }

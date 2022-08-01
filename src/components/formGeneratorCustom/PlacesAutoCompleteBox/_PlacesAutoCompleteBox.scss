@@ -13,7 +13,7 @@
     // States
 }
 
-#PlacesAutoCompleteBox::v-deep {
+#PlacesAutoCompleteBox:deep {
   .q-item--dark {
     color: var(--q-color-dark);
   }

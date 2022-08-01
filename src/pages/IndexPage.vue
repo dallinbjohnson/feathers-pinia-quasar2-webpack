@@ -4,15 +4,15 @@
          src="~assets/quasar-logo-vertical.svg"
          style="width: 200px; height: 200px">
 
-    <ol>
-      <li v-for="(card, index) in cards" :key="index">{{ card.name }}</li>
-    </ol>
-    <q-pagination :model-value="currentPage"
-                  @update:model-value="toPage"
-                  :max="pageCount"
-                  :max-pages="6"
-                  direction-links
-                  boundary-links></q-pagination>
+<!--    <ol>-->
+<!--      <li v-for="(card, index) in cards" :key="index">{{ card.name }}</li>-->
+<!--    </ol>-->
+<!--    <q-pagination :model-value="currentPage"-->
+<!--                  @update:model-value="toPage"-->
+<!--                  :max="pageCount"-->
+<!--                  :max-pages="6"-->
+<!--                  direction-links-->
+<!--                  boundary-links></q-pagination>-->
 
     vuex cards:
     <ol>
@@ -23,16 +23,16 @@
 
 <script>
   import { defineComponent, computed, reactive, watch, ref } from 'vue';
-  import { useFind, usePagination } from 'feathers-pinia';
+  // import { useFind, usePagination } from 'feathers-pinia';
   import { useFind as useFindVuex, models } from '@feathersjs/vuex';
 
-  import useCards from 'stores/services/cards';
+  // import useCards from 'stores/services/cards';
 
   export default defineComponent({
     name: 'IndexPage',
     setup() {
-      const cardsStore = useCards();
-
+      // const cardsStore = useCards();
+      //
       const pagination = reactive({ $limit: 5, $skip: 0 });
 
       const cardsParams = computed(() => {
@@ -45,22 +45,22 @@
         };
       });
 
-      const { items: cards, latestQuery, ...meta } = useFind({
-        model: cardsStore.Model,
-        params: cardsParams
-      });
-      const {
-        // next,
-        // prev,
-        // canNext,
-        // canPrev,
-        currentPage,
-        // itemsCount,
-        pageCount,
-        toPage
-        // toStart,
-        // toEnd
-      } = usePagination(pagination, latestQuery);
+      // const { items: cards, latestQuery, ...meta } = useFind({
+      //   model: cardsStore.Model,
+      //   params: cardsParams
+      // });
+      // const {
+      //   // next,
+      //   // prev,
+      //   // canNext,
+      //   // canPrev,
+      //   currentPage,
+      //   // itemsCount,
+      //   pageCount,
+      //   toPage
+      //   // toStart,
+      //   // toEnd
+      // } = usePagination(pagination, latestQuery);
 
 
       const { Cards } = models.api;
@@ -87,14 +87,14 @@
       return {
         vuexMeta,
         vuexCards,
-        meta,
+        // meta,
         cardsParams,
         pagination,
-        latestQuery,
-        cards,
-        currentPage,
-        pageCount,
-        toPage
+        // latestQuery,
+        // cards,
+        // currentPage,
+        // pageCount,
+        // toPage
       };
     }
   });
