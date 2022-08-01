@@ -1,30 +1,16 @@
-import feathersClient, { apiVuex } from '../../api/feathers-client';
-
-const { makeServicePlugin, BaseModel } = apiVuex;
+import feathersClient from '../../api/feathers-client';
+import { defineStore, BaseModel } from 'feathers-pinia';
 
 // eslint-disable-next-line no-undef
 const {get, set} = require('lodash');
 
-class Logins extends BaseModel {
+export class Logins extends BaseModel {
   constructor(data, options) {
     super(data, options);
   }
 
-  // Required for $FeathersVuex plugin to work after production transpile.
-  static modelName = 'Logins';
-
-  // static diffOnPatch(data) {
-  //   console.log('diffOnPatch data', data);
-  //   if (data['_id']) {
-  //     const originalObject = Logins.store.state['logins'].keyedById[data['_id']];
-  //     return diff(originalObject, data);
-  //   } else {
-  //     return data;
-  //   }
-  // }
-
   // Define default properties here
-  static instanceDefaults() {
+  static instanceDefaults(/*data, {models, store}*/) {
     return {
       email: undefined,
       name: undefined,
@@ -65,10 +51,16 @@ class Logins extends BaseModel {
 
   static setupInstance(data, { models }) {
     if (get(data, '_fastjoin.accounts.owns.ids', []).length) {
-      set(data, '_fastjoin.accounts.owns.ids', get(data, '_fastjoin.accounts.owns.ids', []).map(account => new models.api.Accounts(account)));
+      set(data, '_fastjoin.accounts.owns.ids', get(data, '_fastjoin.accounts.owns.ids', []).map(account => {
+        let newAccount = new models.api.Accounts(account);
+        newAccount.addToStore();
+        return newAccount;
+      }));
     }
     if (get(data, '_fastjoin.accounts.owns.active')) {
-      set(data, '_fastjoin.accounts.owns.active', new models.api.Accounts(get(data, '_fastjoin.accounts.owns.active')));
+      let newAccount = new models.api.Accounts(get(data, '_fastjoin.accounts.owns.active'));
+      newAccount.addToStore();
+      set(data, '_fastjoin.accounts.owns.active', newAccount);
     }
 
     let createdAt = get(data, 'createdAt');
@@ -84,22 +76,17 @@ class Logins extends BaseModel {
 }
 
 const servicePath = 'logins';
-const servicePlugin = makeServicePlugin({
+const useStore = defineStore({
   Model: Logins,
-  service: feathersClient.service(servicePath),
   servicePath,
-  state: {},
+  clients: { api: feathersClient },
+  idField: '_id',
+  state() {
+    return {};
+  },
   getters: {},
-  mutations: {},
   actions: {},
 });
-
-// const beforeHook = context => {
-//   // eslint-disable-next-line no-console
-//   console.log('------------->>>> beforeHook - context.method:', context.method);
-//   console.log('------------->>>> beforeHook - context.params:', context.params);
-//   console.log('------------->>>> beforeHook - context.data:', context.data);
-// };
 
 // Setup the client-side Feathers hooks.
 feathersClient.service(servicePath).hooks({
@@ -110,7 +97,7 @@ feathersClient.service(servicePath).hooks({
     create: [],
     update: [],
     patch: [],
-    remove: [],
+    remove: []
   },
   after: {
     all: [],
@@ -119,17 +106,17 @@ feathersClient.service(servicePath).hooks({
     create: [],
     update: [],
     patch: [],
-    remove: [],
+    remove: []
   },
   error: {
-    all: [ctx => console.log(ctx)],
+    all: [],
     find: [],
     get: [],
     create: [],
     update: [],
     patch: [],
-    remove: [],
-  },
+    remove: []
+  }
 });
 
-export default servicePlugin;
+export default useStore;

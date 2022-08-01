@@ -1,8 +1,8 @@
 import feathersClient from '../../api/feathers-client';
 import { defineStore, BaseModel } from 'feathers-pinia';
 
-// import {/*diff, */lodash} from '@iy4u/common-client-lib';
-// const {$lget, $lset} = lodash;
+// eslint-disable-next-line no-undef
+const {get, set} = require('lodash');
 
 export class Users extends BaseModel {
   constructor(data, options) {
@@ -20,7 +20,7 @@ export class Users extends BaseModel {
       addresses: [],
       logins: {
         ids: [],
-        active: undefined
+        active: undefined,
       },
       settings: {
         theme: {
@@ -33,8 +33,8 @@ export class Users extends BaseModel {
           '--q-color-positive': undefined,
           '--q-color-negative': undefined,
           '--q-color-info': undefined,
-          '--q-color-warning': undefined
-        }
+          '--q-color-warning': undefined,
+        },
       },
       createdBy: undefined,
       updatedBy: undefined,
@@ -42,28 +42,34 @@ export class Users extends BaseModel {
       updatedAt: undefined,
       avatar: undefined,
       banner: undefined,
-      images: undefined
+      images: undefined,
     };
   }
 
-  // static setupInstance(data, { /*store, */models }) {
-  //   if ($lget(data, '_fastjoin.logins.ids', []).length) {
-  //     $lset(data, '_fastjoin.logins.ids', $lget(data, '_fastjoin.logins.ids', []).map(account => new models.api.Logins(account)));
-  //   }
-  //   if ($lget(data, '_fastjoin.logins.active')) {
-  //     $lset(data, '_fastjoin.logins.active', new models.api.Logins($lget(data, '_fastjoin.logins.active')));
-  //   }
-  //
-  //   let createdAt = $lget(data, 'createdAt');
-  //   if (typeof createdAt === 'string') {
-  //     $lset(data, 'createdAt', new Date(createdAt));
-  //   }
-  //   let updatedAt = $lget(data, 'updatedAt');
-  //   if (typeof updatedAt === 'string') {
-  //     $lset(data, 'updatedAt', new Date(updatedAt));
-  //   }
-  //   return data;
-  // }
+  static setupInstance(data, { models }) {
+    if (get(data, '_fastjoin.logins.ids', []).length) {
+      set(data, '_fastjoin.logins.ids', get(data, '_fastjoin.logins.ids', []).map(login => {
+        let newLogin = new models.api.Logins(login);
+        newLogin.addToStore();
+        return newLogin;
+      }));
+    }
+    if (get(data, '_fastjoin.logins.active')) {
+      let newLogin = new models.api.Logins(new models.api.Logins(get(data, '_fastjoin.logins.active')));
+      newLogin.addToStore();
+      set(data, '_fastjoin.logins.active', newLogin);
+    }
+
+    let createdAt = get(data, 'createdAt');
+    if (typeof createdAt === 'string') {
+      set(data, 'createdAt', new Date(createdAt));
+    }
+    let updatedAt = get(data, 'updatedAt');
+    if (typeof updatedAt === 'string') {
+      set(data, 'updatedAt', new Date(updatedAt));
+    }
+    return data;
+  }
 }
 
 const servicePath = 'users';

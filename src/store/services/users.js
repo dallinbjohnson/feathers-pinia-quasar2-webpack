@@ -2,8 +2,8 @@ import feathersClient, { apiVuex } from '../../api/feathers-client';
 
 const { makeServicePlugin, BaseModel } = apiVuex;
 
-import {diff, lodash} from '@iy4u/common-client-lib';
-const {$lget, $lset} = lodash;
+// eslint-disable-next-line no-undef
+const {get, set} = require('lodash');
 
 class Users extends BaseModel {
   constructor(data, options) {
@@ -13,15 +13,15 @@ class Users extends BaseModel {
   // Required for $FeathersVuex plugin to work after production transpile.
   static modelName = 'Users';
 
-  static diffOnPatch(data) {
-    console.log('diffOnPatch data', data);
-    if (data['_id']) {
-      const originalObject = Users.store.state['users'].keyedById[data['_id']];
-      return diff(originalObject, data);
-    } else {
-      return data;
-    }
-  }
+  // static diffOnPatch(data) {
+  //   console.log('diffOnPatch data', data);
+  //   if (data['_id']) {
+  //     const originalObject = Users.store.state['users'].keyedById[data['_id']];
+  //     return diff(originalObject, data);
+  //   } else {
+  //     return data;
+  //   }
+  // }
 
   // Define default properties here
   static instanceDefaults() {
@@ -60,21 +60,21 @@ class Users extends BaseModel {
     };
   }
 
-  static setupInstance(data, { /*store, */models }) {
-    if ($lget(data, '_fastjoin.logins.ids', []).length) {
-      $lset(data, '_fastjoin.logins.ids', $lget(data, '_fastjoin.logins.ids', []).map(account => new models.api.Logins(account)));
+  static setupInstance(data, { models }) {
+    if (get(data, '_fastjoin.logins.ids', []).length) {
+      set(data, '_fastjoin.logins.ids', get(data, '_fastjoin.logins.ids', []).map(login => new models.api.Logins(login)));
     }
-    if ($lget(data, '_fastjoin.logins.active')) {
-      $lset(data, '_fastjoin.logins.active', new models.api.Logins($lget(data, '_fastjoin.logins.active')));
+    if (get(data, '_fastjoin.logins.active')) {
+      set(data, '_fastjoin.logins.active', new models.api.Logins(get(data, '_fastjoin.logins.active')));
     }
 
-    let createdAt = $lget(data, 'createdAt');
+    let createdAt = get(data, 'createdAt');
     if (typeof createdAt === 'string') {
-      $lset(data, 'createdAt', new Date(createdAt));
+      set(data, 'createdAt', new Date(createdAt));
     }
-    let updatedAt = $lget(data, 'updatedAt');
+    let updatedAt = get(data, 'updatedAt');
     if (typeof updatedAt === 'string') {
-      $lset(data, 'updatedAt', new Date(updatedAt));
+      set(data, 'updatedAt', new Date(updatedAt));
     }
     return data;
   }

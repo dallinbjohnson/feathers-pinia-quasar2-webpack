@@ -1,11 +1,8 @@
 <template>
   <q-page>
-    <img alt="Quasar logo"
-         src="~assets/quasar-logo-vertical.svg"
-         style="width: 200px; height: 200px">
-
+    <p>pinia:</p>
     <ol>
-      <li v-for="(card, index) in cards" :key="index">{{ card.name }}</li>
+      <li v-for="(user, index) in users" :key="index">{{ user.name }}</li>
     </ol>
     <q-pagination :model-value="currentPage"
                   @update:model-value="toPage"
@@ -14,9 +11,14 @@
                   direction-links
                   boundary-links></q-pagination>
 
-    vuex cards:
+<!--    {{ logins.map(item => item.name) }}-->
+<!--    {{ accounts.map(item => item.name) }}-->
+
+    <hr>
+
+    <p>vuex:</p>
     <ol>
-      <li v-for="(card, index) in vuexCards" :key="index">{{ card.name }}</li>
+      <li v-for="(user, index) in vuexUsers" :key="index">{{ user.name }}</li>
     </ol>
   </q-page>
 </template>
@@ -26,28 +28,51 @@
   import { useFind, usePagination } from 'feathers-pinia';
   import { useFind as useFindVuex, models } from '@feathersjs/vuex';
 
-  import useCards from 'stores/services/cards';
+  import useUsers from 'stores/services/users';
+  import useLogins from 'stores/services/logins';
+  import useAccounts from 'stores/services/accounts';
 
   export default defineComponent({
     name: 'IndexPage',
     setup() {
-      const cardsStore = useCards();
+      // eslint-disable-next-line no-unused-vars
+      const loginsStore = useLogins();
+      // let logins = computed(() => {
+      //   return loginsStore.findInStore().data;
+      // });
+
+      // eslint-disable-next-line no-unused-vars
+      const accountsStore = useAccounts();
+      // let accounts = computed(() => {
+      //   return accountsStore.findInStore().data;
+      // });
+
+      const usersStore = useUsers();
 
       const pagination = reactive({ $limit: 5, $skip: 0 });
 
-      const cardsParams = computed(() => {
+      const usersParams = computed(() => {
         return {
           query: {
-            ...pagination
+            ...pagination,
           },
-          qid: 'cards',
-          paginate: true
+          qid: 'users',
+          paginate: true,
+
+          rulesJoin: true,
+          usersResolversQuery: {
+            logins: [undefined, {
+              loginsResolversQuery: {
+                accounts: true,
+              },
+            }],
+          },
         };
       });
 
-      const { items: cards, latestQuery, ...meta } = useFind({
-        model: cardsStore.Model,
-        params: cardsParams
+      const { items: users, latestQuery, ...meta } = useFind({
+        model: usersStore.Model,
+        params: usersParams,
       });
       const {
         // next,
@@ -57,45 +82,56 @@
         currentPage,
         // itemsCount,
         pageCount,
-        toPage
+        toPage,
         // toStart,
         // toEnd
       } = usePagination(pagination, latestQuery);
 
 
-      const { Cards } = models.api;
+      const { Users } = models.api;
 
-      const todosParams = computed(() => {
+      const usersVuexParams = computed(() => {
         return {
           query: {
-            ...pagination
+            ...pagination,
+          },
+          rulesJoin: true,
+          usersResolversQuery: {
+            logins: [undefined, {
+              loginsResolversQuery: {
+                accounts: true,
+              },
+            }],
           },
         };
       });
 
       const { latestQuery: vuexLatestQuery, ...vuexMeta } = useFindVuex({
-        model: Cards,
-        params: todosParams
+        model: Users,
+        params: usersVuexParams,
       });
 
-      let vuexCards = ref([]);
+      let vuexUsers = ref([]);
 
       watch(vuexLatestQuery, () => {
-        vuexCards.value = vuexLatestQuery?.value?.response?.data || [];
-      }, {immediate: true, deep: true});
+        vuexUsers.value = vuexLatestQuery?.value?.response?.data || [];
+      }, { immediate: true, deep: true });
 
       return {
         vuexMeta,
-        vuexCards,
+        vuexUsers,
+
+        // logins,
+        // accounts,
         meta,
-        cardsParams,
+        usersParams,
         pagination,
         latestQuery,
-        cards,
+        users,
         currentPage,
         pageCount,
-        toPage
+        toPage,
       };
-    }
+    },
   });
 </script>

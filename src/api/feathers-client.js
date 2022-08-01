@@ -48,7 +48,6 @@ const feathersClient = feathers()
           const query = { ...context.params.query };
           const params = { ...context.params, query };
           context.params = paramsForServer(params);
-          console.log(JSON.stringify(context.params));
         }
         // paramsForServer(
         //   'disableSoftDelete',
