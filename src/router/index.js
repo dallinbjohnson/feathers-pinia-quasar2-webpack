@@ -4,6 +4,12 @@ import routes from './routes';
 
 import {Notify} from 'quasar';
 
+import useAuth from '../stores/store.auth';
+
+import useUsers from 'stores/services/users';
+import useLogins from 'stores/services/logins';
+import useAccounts from 'stores/services/accounts';
+
 /*
  * If not building with SSR mode, you can
  * directly export the Router instantiation;
@@ -29,6 +35,74 @@ export default route(function ( { store/*, ssrContext*/ } ) {
   });
 
   Router.beforeEach(async (to, from, next) => {
+    useUsers();
+    useLogins();
+    useAccounts();
+    let authStore = useAuth();
+
+    console.log('authStore', authStore);
+    if (!authStore.isAuthenticated) {
+      await authStore.authenticate({
+        strategy: 'local',
+        email: 'dev@ionrev.com',
+        password: 'W3lc0m3^',
+      })
+        .then(() => {
+          console.log('authStore authenticated');
+          // console.log('getters user', store.getters['auth/user']);
+          if (to.meta.requiresAuth) {
+            if (authStore.isAuthenticated) {
+              // console.log('pass');
+              next();
+            } else {
+              // console.log('not pass', store.state.auth.user);
+              Notify.create({
+                type: 'negative',
+                message: 'Page is restricted',
+                timeout: 10000,
+                actions: [
+                  {
+                    icon: 'close', color: 'white', handler: () => {
+                      /* ... */
+                    },
+                  },
+                ],
+              });
+              next('/login');
+            }
+          } else {
+            next();
+          }
+        })
+        .catch((e) => {
+          console.log('authStore not authenticated', e);
+          if (to.meta.requiresAuth) {
+            if (authStore.isAuthenticated) {
+              next();
+            } else {
+              Notify.create({
+                type: 'negative',
+                message: 'Page is restricted. Please login or register.',
+                timeout: 10000,
+                actions: [
+                  {
+                    icon: 'close', color: 'white', handler: () => {
+                      /* ... */
+                    },
+                  },
+                ],
+              });
+              next('/login');
+            }
+          } else {
+            next();
+          }
+        });
+    } else {
+      next();
+    }
+
+
     if (!store.getters['auth/isAuthenticated']) {
       await store.dispatch('auth/authenticate', {
         strategy: 'local',

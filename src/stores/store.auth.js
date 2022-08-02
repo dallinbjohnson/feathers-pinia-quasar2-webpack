@@ -9,16 +9,18 @@ import { Users } from './services/users.js';
 export default defineAuthStore({
   feathersClient,
   userService: 'users',
-  state: {
-    userId: null,
-    // rules: [],
-    // logins: [],
-    // activeLogin: {},
-    // accounts: [],
-    // activeAccount: {},
+  state() {
+    return {
+      userId: null,
+      // rules: [],
+      // logins: [],
+      // activeLogin: {},
+      // accounts: [],
+      // activeAccount: {},
+    };
   },
   getters: {
-    user() {
+    authUser() {
       return this.userId ? Users.getFromStore(this.userId) : null;
     },
 
@@ -56,6 +58,7 @@ export default defineAuthStore({
   // },
   actions: {
     handleResponse(response) {
+      this.payload = response || null;
       this.userId = response.user.id || response.user._id;
       Users.addToStore(response.user);
       return response;
