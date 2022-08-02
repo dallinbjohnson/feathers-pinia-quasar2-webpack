@@ -40,7 +40,6 @@ export default route(function ( { store/*, ssrContext*/ } ) {
     useAccounts();
     let authStore = useAuth();
 
-    console.log('authStore', authStore);
     if (!authStore.isAuthenticated) {
       await authStore.authenticate({
         strategy: 'local',
