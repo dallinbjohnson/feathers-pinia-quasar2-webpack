@@ -52,16 +52,16 @@
       items: {
         type: Array,
         required: false,
-        default() {
+        default(props) {
           return [
             {
               icon: 'fa fa-id-card',
               text: 'Profile',
               dest: '/profile',
-              display: this.user,
+              display: props.user,
             },
-            {icon: 'fa fa-history', text: 'Requests', dest: '', display: this.user},
-            {icon: 'logout', text: 'Logout', dest: '/logout', display: this.user},
+            {icon: 'fa fa-history', text: 'Requests', dest: '', display: props.user},
+            {icon: 'logout', text: 'Logout', dest: '/logout', display: props.user},
           ];
         },
       },
@@ -148,6 +148,7 @@
       getGenericAvatar() {
         let avatar = this.$lget(this.user, 'avatar.raw.file');
         if (avatar) return avatar;
+        // eslint-disable-next-line no-undef
         this.importAllGenericAvatar(require.context('src/assets/avatars/', true, /\.png$/));
         return this.genericAvatars[Math.floor(Math.random() * this.genericAvatars.length)].pathLong;
       },
