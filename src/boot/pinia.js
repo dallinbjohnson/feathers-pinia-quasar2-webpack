@@ -1,5 +1,5 @@
 import { boot } from 'quasar/wrappers';
-import createStore from '../stores';
+// import createStore from '../stores';
 
 // eslint-disable-next-line no-undef
 const requireModule = require.context(
@@ -15,9 +15,8 @@ const servicePlugins = requireModule
   .map(modulePath => requireModule(modulePath).default);
 import auth from '../stores/store.auth';
 
-export default boot(({ app }) => {
-  app.use(createStore({}));
-
+export default boot((/*{ app }*/) => {
+  // app.use(createStore({}));
   servicePlugins.forEach(fn => fn());
   auth();
 });

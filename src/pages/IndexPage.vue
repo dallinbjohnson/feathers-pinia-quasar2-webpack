@@ -1,6 +1,6 @@
 <template>
   <q-page>
-    <p>pinia:</p>
+    <p>pinia users:</p>
     <ol>
       <li v-for="(user, index) in users" :key="index">{{ user.name }}</li>
     </ol>
@@ -10,42 +10,17 @@
                   :max-pages="6"
                   direction-links
                   boundary-links></q-pagination>
-
-    <!--    {{ logins.map(item => item.name) }}-->
-    <!--    {{ accounts.map(item => item.name) }}-->
-
-<!--&lt;!&ndash;    <hr>&ndash;&gt;-->
-
-<!--    <p>vuex:</p>-->
-<!--    <ol>-->
-<!--      <li v-for="(user, index) in vuexUsers" :key="index">{{ user.name }}</li>-->
-<!--    </ol>-->
-
-<!--    <FeathersVuexPagination v-model="pagination" :latest-query="vuexLatestQuery">-->
-<!--      <template #default="{ currentPage, pageCount, toPage }">-->
-<!--        <q-pagination :model-value="currentPage"-->
-<!--                      @update:model-value="toPage"-->
-<!--                      :max="pageCount"-->
-<!--                      :max-pages="6"-->
-<!--                      direction-links-->
-<!--                      boundary-links></q-pagination>-->
-<!--      </template>-->
-<!--    </FeathersVuexPagination>-->
   </q-page>
 </template>
 
 <script>
-  import { defineComponent, computed, reactive/*, watch, ref*/ } from 'vue';
+  import { defineComponent, computed, reactive } from 'vue';
   import { useFind, usePagination } from 'feathers-pinia';
-  // import { useFind as useFindVuex, models, FeathersVuexPagination } from '@feathersjs/vuex';
 
   import useUsers from 'stores/services/users';
 
   export default defineComponent({
     name: 'IndexPage',
-    components: {
-      // FeathersVuexPagination,
-    },
     setup() {
       const usersStore = useUsers();
 
@@ -87,45 +62,8 @@
         // toEnd
       } = usePagination(pagination, latestQuery);
 
-
-      // const { Users } = models.api;
-      //
-      // const usersVuexParams = computed(() => {
-      //   return {
-      //     query: {
-      //       ...pagination,
-      //     },
-      //     rulesJoin: true,
-      //     usersResolversQuery: {
-      //       logins: [undefined, {
-      //         loginsResolversQuery: {
-      //           accounts: true,
-      //         },
-      //       }],
-      //     },
-      //   };
-      // });
-      //
-      // const { latestQuery: vuexLatestQuery, ...vuexMeta } = useFindVuex({
-      //   model: Users,
-      //   params: usersVuexParams,
-      // });
-      //
-      // let vuexUsers = ref([]);
-      //
-      // watch(vuexLatestQuery, () => {
-      //   vuexUsers.value = vuexLatestQuery?.value?.response?.data || [];
-      // }, { immediate: true, deep: true });
-
       return {
-        // vuexMeta,
-        // vuexLatestQuery,
-        // vuexUsers,
-
         pagination,
-
-        // logins,
-        // accounts,
         meta,
         usersParams,
         latestQuery,

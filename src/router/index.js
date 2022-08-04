@@ -42,6 +42,9 @@ export default route(function ( /*{ store/!*, ssrContext*!/ }*/ ) {
         .then(() => {
           console.log('authStore authenticated');
           // console.log('getters user', store.getters['auth/user']);
+          // let rules = Router.app.$lget(authStore, 'auth.rules', []);
+          // Router.app.$ability.update(rules);
+
           if (to.meta.requiresAuth) {
             if (authStore.isAuthenticated) {
               // console.log('pass');
@@ -70,6 +73,9 @@ export default route(function ( /*{ store/!*, ssrContext*!/ }*/ ) {
           console.log('authStore not authenticated', e);
           if (to.meta.requiresAuth) {
             if (authStore.isAuthenticated) {
+              // let rules = Router.app.$lget(authStore, 'auth.rules', []);
+              // Router.app.$ability.update(rules);
+
               next();
             } else {
               Notify.create({
@@ -87,74 +93,20 @@ export default route(function ( /*{ store/!*, ssrContext*!/ }*/ ) {
               next('/login');
             }
           } else {
+            if (authStore.isAuthenticated) {
+              // let rules = Router.app.$lget(authStore, 'auth.rules', []);
+              // Router.app.$ability.update(rules);
+            }
+
             next();
           }
         });
     } else {
+      // let rules = Router.app.$lget(authStore, 'auth.rules', []);
+      // Router.app.$ability.update(rules);
+
       next();
     }
-
-
-    // if (!store.getters['auth/isAuthenticated']) {
-    //   await store.dispatch('auth/authenticate', {
-    //     strategy: 'local',
-    //     email: 'dev@ionrev.com',
-    //     password: 'W3lc0m3^',
-    //   })
-    //     .then(() => {
-    //       console.log('authenticated');
-    //       // console.log('getters user', store.getters['auth/user']);
-    //       if (to.meta.requiresAuth) {
-    //         if (store.getters['auth/isAuthenticated']) {
-    //           // console.log('pass');
-    //           next();
-    //         } else {
-    //           // console.log('not pass', store.state.auth.user);
-    //           Notify.create({
-    //             type: 'negative',
-    //             message: 'Page is restricted',
-    //             timeout: 10000,
-    //             actions: [
-    //               {
-    //                 icon: 'close', color: 'white', handler: () => {
-    //                   /* ... */
-    //                 },
-    //               },
-    //             ],
-    //           });
-    //           next('/login');
-    //         }
-    //       } else {
-    //         next();
-    //       }
-    //     })
-    //     .catch((e) => {
-    //       console.log('not authenticated', e);
-    //       if (to.meta.requiresAuth) {
-    //         if (store.getters['auth/isAuthenticated']) {
-    //           next();
-    //         } else {
-    //           Notify.create({
-    //             type: 'negative',
-    //             message: 'Page is restricted. Please login or register.',
-    //             timeout: 10000,
-    //             actions: [
-    //               {
-    //                 icon: 'close', color: 'white', handler: () => {
-    //                   /* ... */
-    //                 },
-    //               },
-    //             ],
-    //           });
-    //           next('/login');
-    //         }
-    //       } else {
-    //         next();
-    //       }
-    //     });
-    // } else {
-    //   next();
-    // }
   });
 
   return Router;

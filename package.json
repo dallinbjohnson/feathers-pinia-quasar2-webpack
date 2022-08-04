@@ -22,7 +22,6 @@
     "@feathersjs/feathers": "^4.5.15",
     "@feathersjs/rest-client": "^4.5.15",
     "@feathersjs/socketio-client": "^4.5.15",
-    "@feathersjs/vuex": "^4.0.1-pre.16",
     "@quasar/extras": "^1.0.0",
     "@stripe/stripe-js": "^1.32.0",
     "@vue-stripe/vue-stripe": "^4.4.4",
@@ -38,8 +37,7 @@
     "socket.io-client": "^2.5.0",
     "vue": "^3.2.37",
     "vue-i18n": "^9.0.0",
-    "vue-router": "^4.0.0",
-    "vuex": "^4.0.2"
+    "vue-router": "^4.0.0"
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.13.14",
