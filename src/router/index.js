@@ -34,11 +34,7 @@ export default route(function ( /*{ store/!*, ssrContext*!/ }*/ ) {
     let authStore = useAuth();
 
     if (!authStore.isAuthenticated) {
-      await authStore.authenticate({
-        strategy: 'local',
-        email: 'dev@ionrev.com',
-        password: 'W3lc0m3^',
-      })
+      await authStore.authenticate()
         .then(() => {
           console.log('authStore authenticated');
           // console.log('getters user', store.getters['auth/user']);
