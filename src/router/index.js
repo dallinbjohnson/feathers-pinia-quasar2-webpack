@@ -6,10 +6,6 @@ import {Notify} from 'quasar';
 
 import useAuth from '../stores/store.auth';
 
-import useUsers from 'stores/services/users';
-import useLogins from 'stores/services/logins';
-import useAccounts from 'stores/services/accounts';
-
 /*
  * If not building with SSR mode, you can
  * directly export the Router instantiation;
@@ -35,9 +31,6 @@ export default route(function ( /*{ store/!*, ssrContext*!/ }*/ ) {
   });
 
   Router.beforeEach(async (to, from, next) => {
-    useUsers();
-    useLogins();
-    useAccounts();
     let authStore = useAuth();
 
     if (!authStore.isAuthenticated) {

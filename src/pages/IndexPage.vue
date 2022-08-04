@@ -40,8 +40,6 @@
   // import { useFind as useFindVuex, models, FeathersVuexPagination } from '@feathersjs/vuex';
 
   import useUsers from 'stores/services/users';
-  import useLogins from 'stores/services/logins';
-  import useAccounts from 'stores/services/accounts';
 
   export default defineComponent({
     name: 'IndexPage',
@@ -49,18 +47,6 @@
       // FeathersVuexPagination,
     },
     setup() {
-      // eslint-disable-next-line no-unused-vars
-      const loginsStore = useLogins();
-      // let logins = computed(() => {
-      //   return loginsStore.findInStore().data;
-      // });
-
-      // eslint-disable-next-line no-unused-vars
-      const accountsStore = useAccounts();
-      // let accounts = computed(() => {
-      //   return accountsStore.findInStore().data;
-      // });
-
       const usersStore = useUsers();
 
       const pagination = reactive({ $limit: 5, $skip: 0 });
