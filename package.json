@@ -25,6 +25,7 @@
     "@quasar/extras": "^1.0.0",
     "@stripe/stripe-js": "^1.32.0",
     "@vue-stripe/vue-stripe": "^4.4.4",
+    "@vueuse/core": "^9.1.0",
     "axios": "^0.21.1",
     "core-js": "^3.6.5",
     "feathers-batch": "^1.1.1",

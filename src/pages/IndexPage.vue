@@ -14,7 +14,8 @@
 </template>
 
 <script>
-  import { defineComponent, computed, reactive } from 'vue';
+  import { defineComponent, computed, reactive, watch } from 'vue';
+  import { useQuasar } from 'quasar';
   import { useFind, usePagination } from 'feathers-pinia';
 
   import useUsers from 'stores/services/users';
@@ -22,9 +23,11 @@
   export default defineComponent({
     name: 'IndexPage',
     setup() {
+      const $q = useQuasar();
+
       const usersStore = useUsers();
 
-      const pagination = reactive({ $limit: 5, $skip: 0 });
+      const pagination = reactive({ $limit: 1, $skip: 0 });
 
       const usersParams = computed(() => {
         return {
@@ -45,10 +48,19 @@
         };
       });
 
-      const { items: users, latestQuery, ...meta } = useFind({
+      const { items: users, latestQuery, isPending, ...meta } = useFind({
         model: usersStore.Model,
         params: usersParams,
       });
+      watch(isPending, (newVal) => {
+        console.log(newVal);
+        if (newVal) {
+          $q.loading.show();
+        } else {
+          $q.loading.hide();
+        }
+      }, {immediate: true});
+
       const {
         // next,
         // prev,
@@ -67,6 +79,7 @@
         meta,
         usersParams,
         latestQuery,
+        isPending,
         users,
         currentPage,
         pageCount,
