@@ -23,6 +23,8 @@
     "@feathersjs/rest-client": "^4.5.15",
     "@feathersjs/socketio-client": "^4.5.15",
     "@quasar/extras": "^1.0.0",
+    "@sparkz-community/common-client-lib": "^0.1.1",
+    "@sparkz-community/form-gen-client-lib": "^0.1.1",
     "@stripe/stripe-js": "^1.32.0",
     "@vue-stripe/vue-stripe": "^4.4.4",
     "@vueuse/core": "^9.1.0",
